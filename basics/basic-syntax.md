@@ -3,12 +3,15 @@
 ## Package Declaration
 Every Go file must start with a package declaration:
 ```go
+{% raw %}
 package main  // Executable program
 package mylib // Reusable library
+{% endraw %}
 ```
 
 ## Import Statements
 ```go
+{% raw %}
 // Single import
 import "fmt"
 
@@ -18,18 +21,22 @@ import (
     "time"
     "strings"
 )
+{% endraw %}
 ```
 
 ## Main Function
 Entry point for executable programs:
 ```go
+{% raw %}
 func main() {
     // Your code here
 }
+{% endraw %}
 ```
 
 ## Variables
 ```go
+{% raw %}
 // Variable declaration with explicit type
 var name string = "John"
 var age int = 30
@@ -53,10 +60,12 @@ const (
     StatusOK   = 200
     StatusNotFound = 404
 )
+{% endraw %}
 ```
 
 ## Basic Data Types
 ```go
+{% raw %}
 // Numeric types
 var i int = 10         // Platform dependent (32 or 64 bit)
 var i8 int8 = 127      // -128 to 127
@@ -90,12 +99,14 @@ var r rune = 'A'
 
 // Byte (alias for uint8)
 var b byte = 'a'
+{% endraw %}
 ```
 
 ## Control Structures
 
 ### If-Else
 ```go
+{% raw %}
 if x > 10 {
     // do something
 } else if x < 0 {
@@ -108,10 +119,12 @@ if x > 10 {
 if value := getValue(); value > 10 {
     // value is available only in this scope
 }
+{% endraw %}
 ```
 
 ### For Loops
 ```go
+{% raw %}
 // Standard for loop
 for i := 0; i < 10; i++ {
     // code
@@ -142,10 +155,12 @@ for _, value := range collection {
 for index, _ := range collection {
     // code (ignore value)
 }
+{% endraw %}
 ```
 
 ### Switch
 ```go
+{% raw %}
 switch value {
 case 1:
     // code
@@ -174,10 +189,12 @@ case x < 0:
 default:
     // code
 }
+{% endraw %}
 ```
 
 ## Functions
 ```go
+{% raw %}
 // Basic function
 func add(x int, y int) int {
     return x + y
@@ -215,10 +232,12 @@ func sum(nums ...int) int {
     return total
 }
 // Call as: sum(1, 2, 3) or sum(nums...)
+{% endraw %}
 ```
 
 ## Comments
 ```go
+{% raw %}
 // Single-line comment
 
 /*
@@ -235,4 +254,4 @@ package math
 func Add(x, y int) int {
     return x + y
 }
-```
+{% endraw %}

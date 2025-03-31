@@ -4,6 +4,7 @@
 Fixed-size collection of elements of the same type.
 
 ```go
+{% raw %}
 // Declaration with explicit size
 var scores [5]int                     // Array of 5 integers, initialized to zero values
 var names [3]string                   // Array of 3 strings, initialized to empty strings
@@ -25,12 +26,14 @@ length := len(scores)                 // 5
 // Multi-dimensional arrays
 var matrix [3][4]int                  // 3x4 matrix of integers
 grid := [2][3]int{{1, 2, 3}, {4, 5, 6}}
+{% endraw %}
 ```
 
 ## Slices
 Dynamic, flexible view into an array. Most common collection type in Go.
 
 ```go
+{% raw %}
 // Declaration
 var scores []int                      // Nil slice (length and capacity are 0)
 var names []string                    // Nil slice
@@ -72,12 +75,14 @@ scores = append(scores[:i], scores[i+1:]...)
 // Remove element at index i (preserving order but reusing the same underlying array)
 copy(scores[i:], scores[i+1:])
 scores = scores[:len(scores)-1]
+{% endraw %}
 ```
 
 ## Maps
 Unordered collection of key-value pairs.
 
 ```go
+{% raw %}
 // Declaration
 var ages map[string]int               // Nil map (cannot be assigned to)
 
@@ -113,12 +118,14 @@ for name, age := range ages {
 
 // Clear a map (Go 1.21+)
 clear(ages)                           // Removes all key-value pairs
+{% endraw %}
 ```
 
 ## Structs
 Composite data type that groups together variables of different data types.
 
 ```go
+{% raw %}
 // Declaration
 type Person struct {
     Name    string
@@ -158,12 +165,14 @@ emp := Employee{
 }
 // Access embedded fields directly
 fmt.Println(emp.Name)                 // "Alice" (from Person)
+{% endraw %}
 ```
 
 ## Pointers
 Store memory addresses of values.
 
 ```go
+{% raw %}
 // Declaration
 var p *int                            // Nil pointer
 
@@ -189,12 +198,14 @@ fmt.Println(person.Name)              // "Alice" (shorthand for (*person).Name)
 func (p *Person) Birthday() {
     p.Age++
 }
+{% endraw %}
 ```
 
 ## Interfaces
 Define behavior as a set of methods.
 
 ```go
+{% raw %}
 // Declaration
 type Geometry interface {
     Area() float64
@@ -240,4 +251,4 @@ case string:
 default:
     fmt.Println("i is another type")
 }
-```
+{% endraw %}
