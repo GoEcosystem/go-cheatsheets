@@ -1,11 +1,10 @@
-remote_theme: pages-themes/cayman@v0.2.0
-plugins:
-  - jekyll-remote-theme
-  - jekyll-relative-links
-
+theme: jekyll-theme-cayman
 title: Go Cheatsheets
 description: Quick reference guides for Go programming language
 show_downloads: false
+
+plugins:
+  - jekyll-relative-links
 
 # Enable GitHub Pages to render Markdown files
 relative_links:
