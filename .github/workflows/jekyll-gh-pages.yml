@@ -1,4 +1,4 @@
-name: Build and Deploy GitHub Pages
+name: Build Jekyll Site
 
 on:
   push:
@@ -26,6 +26,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v4
+      
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -41,16 +45,3 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: '_site'
-  
-  # Deploy to GitHub Pages
-  deploy:
-    name: Deploy to GitHub Pages
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
