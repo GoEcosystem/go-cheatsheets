@@ -2,12 +2,14 @@
 ---
 
 // Define color variables
-$primary-color: #00ADD8; // Go blue
+$primary-color: #00ADD8; /* Go blue */
 $primary-dark: darken($primary-color, 5%);
 $secondary-color: #F7F7F7;
 $text-color: #333333;
 $light-text: #FFFFFF;
 $border-color: #E9ECEF;
+$code-bg: #f8f9fa;
+$code-comment: #6A737D;
 
 // Base styles
 body {
@@ -212,22 +214,223 @@ body {
   margin-bottom: 1.5rem;
 }
 
-// Code blocks
+// Enhanced code blocks styles
 pre {
-  background-color: #f5f5f5;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 1rem;
+  background-color: $code-bg;
+  border: 1px solid darken($code-bg, 10%);
+  border-radius: 6px;
+  padding: 1.2rem;
   overflow-x: auto;
+  margin: 1.5rem 0;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 code {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
   font-size: 0.9em;
+  color: #24292e;
 }
 
 pre code {
   display: block;
+  tab-size: 4;
+}
+
+// Syntax highlighting improvements
+.hljs-comment, 
+pre code .comment, 
+pre code [class^="comment"],
+pre code [class*=" comment"] {
+  color: $code-comment;
+  font-style: italic;
+}
+
+.hljs-keyword, 
+pre code .keyword, 
+pre code [class^="keyword"],
+pre code [class*=" keyword"] {
+  color: #d73a49;
+  font-weight: bold;
+}
+
+.hljs-string, 
+pre code .string, 
+pre code [class^="string"],
+pre code [class*=" string"] {
+  color: #032f62;
+}
+
+.hljs-number, 
+pre code .number, 
+pre code [class^="number"],
+pre code [class*=" number"] {
+  color: #005cc5;
+}
+
+.hljs-function, 
+pre code .function, 
+pre code [class^="function"],
+pre code [class*=" function"] {
+  color: #6f42c1;
+}
+
+// Function section highlighting
+.function-section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid $border-color;
+}
+
+.function-section h3 {
+  color: $primary-dark;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: inline-block;
+  border-bottom: 2px solid $primary-color;
+  padding-bottom: 0.3rem;
+}
+
+.function-description {
+  margin-bottom: 1.2rem;
+  font-size: 1.05rem;
+}
+
+.function-usage {
+  background-color: lighten($secondary-color, 2%);
+  padding: 1rem;
+  border-left: 4px solid $primary-color;
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+}
+
+// Better table formatting for cheatsheets
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+th {
+  background-color: $primary-color;
+  color: $light-text;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+}
+
+td {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid $border-color;
+  vertical-align: top;
+}
+
+tr:nth-child(even) {
+  background-color: lighten($secondary-color, 2%);
+}
+
+tr:hover {
+  background-color: darken($secondary-color, 2%);
+}
+
+// Callouts and notes
+.note, .tip, .warning, .important {
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 6px;
+  position: relative;
+  padding-left: 3.5rem;
+}
+
+.note:before, .tip:before, .warning:before, .important:before {
+  content: '';
+  position: absolute;
+  left: 1.2rem;
+  top: 1.2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.note {
+  background-color: #e7f5ff;
+  border-left: 4px solid #74c0fc;
+}
+
+.note:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%2374c0fc' d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM11 7h2v2h-2V7zm0 4h2v6h-2v-6z'/%3E%3C/svg%3E");
+}
+
+.tip {
+  background-color: #e6fcf5;
+  border-left: 4px solid #3bc9db;
+}
+
+.tip:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%233bc9db' d='M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-1-5h2v2h-2v-2zm2-1.645V14h-2v-1.5a1 1 0 0 1 1-1 1.5 1.5 0 1 0-1.471-1.794l-1.962-.393A3.5 3.5 0 1 1 13 13.355z'/%3E%3C/svg%3E");
+}
+
+.warning {
+  background-color: #fff9db;
+  border-left: 4px solid #fcc419;
+}
+
+.warning:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%23fcc419' d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-1-5h2v2h-2v-2zm0-8h2v6h-2V7z'/%3E%3C/svg%3E");
+}
+
+.important {
+  background-color: #ffe3e3;
+  border-left: 4px solid #fa5252;
+}
+
+.important:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%23fa5252' d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-7v2h2v-2h-2zm0-8v6h2V7h-2z'/%3E%3C/svg%3E");
+}
+
+// Section navigation
+.section-nav {
+  background-color: $secondary-color;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 2rem;
+}
+
+.section-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.section-nav li {
+  margin: 0;
+}
+
+.section-nav a {
+  display: block;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  color: $text-color;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.2s;
+  border: 1px solid $border-color;
+}
+
+.section-nav a:hover {
+  background-color: $primary-color;
+  color: #fff;
+  border-color: $primary-color;
 }
 
 // Buttons
@@ -262,6 +465,11 @@ pre code {
 .btn-secondary:hover {
   background-color: $secondary-color;
   color: $primary-color;
+}
+
+.btn-lg {
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
 }
 
 // Footer
@@ -344,5 +552,18 @@ pre code {
   
   .site-nav li {
     margin: 0 0.75rem;
+  }
+  
+  pre {
+    padding: 1rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .function-section {
+    padding-bottom: 1rem;
+  }
+  
+  .section-nav ul {
+    flex-direction: column;
   }
 }
