@@ -1,10 +1,25 @@
-theme: jekyll-theme-cayman
+# Site settings
 title: Go Cheatsheets
 description: Quick reference guides for Go programming language
-show_downloads: false
+baseurl: "/go-cheatsheets"
+url: "https://goecosystem.github.io"
 
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Jekyll settings
+github:
+  is_project_page: true
+  repository_url: https://github.com/GoEcosystem/go-cheatsheets
+
+# Theme and plugins
+remote_theme: pages-themes/minimal@v0.2.0
 plugins:
+  - jekyll-remote-theme
   - jekyll-relative-links
+  - jekyll-seo-tag
 
 # Enable GitHub Pages to render Markdown files
 relative_links:
@@ -13,4 +28,21 @@ relative_links:
 
 include:
   - README.md
-  - LICENSE.md
+  - LICENSE
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: Basics
+    url: /basics/
+  - title: Advanced
+    url: /advanced/
+  - title: Concurrency
+    url: /concurrency/
+  - title: Standard Library
+    url: /standard-library/
+  - title: Tooling
+    url: /tooling/
+  - title: GitHub
+    url: https://github.com/GoEcosystem/go-cheatsheets
