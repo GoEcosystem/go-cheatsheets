@@ -1,19 +1,40 @@
 ---
 ---
 
-@import "jekyll-theme-cayman";
+@import "{{ site.theme }}";
 
+// Go brand colors
+$go-blue: #00ADD8;
+$go-dark-blue: #0092B8;
+
+// Customize the header
+.page-header {
+  background-color: $go-blue;
+  background-image: linear-gradient(120deg, $go-blue, $go-dark-blue);
+}
+
+// Customize headings and links
 .main-content {
+  h1, h2, h3, h4, h5, h6 {
+    color: $go-blue;
+  }
+  
+  a {
+    color: $go-blue;
+    
+    &:hover {
+      color: $go-dark-blue;
+    }
+  }
+  
+  // Code block styling
   pre {
     background-color: #0D1117;
     border-radius: 6px;
-    font-family: monospace;
-    font-size: 14px;
-    line-height: 1.6;
+    padding: 1rem;
     width: 85%;
     max-width: 85%;
     margin: 1.5rem auto;
-    overflow-x: auto;
   }
   
   .highlight {
@@ -28,15 +49,18 @@
     }
   }
   
+  // Inline code
   code {
-    background-color: #f8f9fa;
-    color: #0092B8;
-    padding: 0.2rem 0.4rem;
-    border-radius: 3px;
+    color: $go-dark-blue;
   }
 }
 
-.page-header {
-  background-color: #00ADD8;
-  background-image: linear-gradient(120deg, #00ADD8, #0092B8);
+// Responsive adjustments
+@media screen and (max-width: 42em) {
+  .main-content {
+    pre, .highlight {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
 }
