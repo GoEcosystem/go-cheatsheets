@@ -1,41 +1,85 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
+    
+    <!-- SEO -->
     {% seo %}
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#00ADD8">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-    {% include head-custom.html %}
-  </head>
-  <body>
-    <a id="skip-to-content" href="#content">Skip to the content.</a>
-
-    <header class="page-header" role="banner">
-      <h1 class="project-name">{{ page.title | default: site.title }}</h1>
-      <h2 class="project-tagline">{{ page.description | default: site.description }}</h2>
-      
-      <nav class="main-nav">
-        {% for item in site.navigation %}
-          <a href="{{ item.url | relative_url }}" class="btn">{{ item.title }}</a>
-        {% endfor %}
-      </nav>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="{{ '/' | relative_url }}" class="site-logo">
+                <img src="{{ '/assets/images/mascot/gopher_avatar.jpg' | relative_url }}" alt="Go Gopher" class="logo-image">
+                <span class="logo-text">{{ site.title }}</span>
+            </a>
+            <nav class="site-nav">
+                <ul>
+                    {% for item in site.navigation %}
+                    <li><a href="{{ item.url | relative_url }}" {% if page.url == item.url %}class="active"{% endif %}>{{ item.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main id="content" class="main-content" role="main">
-      {{ content }}
-
-      <footer class="site-footer">
-        <span class="site-footer-owner">
-          <a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.
-        </span>
-        <span class="site-footer-credits">
-          &copy; {{ 'now' | date: "%Y" }} GoEcosystem. All repositories licensed under MIT License.
-        </span>
-      </footer>
+    <main class="site-content">
+        {% if page.url != "/" %}
+        <div class="container">
+            {% if page.title %}
+            <div class="page-header">
+                <h1>{{ page.title }}</h1>
+                {% if page.description %}
+                <p class="page-description">{{ page.description }}</p>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        {{ content }}
     </main>
-  </body>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Go Cheatsheets</h3>
+                    <p>Quick reference guides for Go programming language syntax and patterns.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="{{ '/basics/' | relative_url }}">Basics</a></li>
+                        <li><a href="{{ '/advanced/' | relative_url }}">Advanced</a></li>
+                        <li><a href="{{ '/concurrency/' | relative_url }}">Concurrency</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="https://github.com/GoEcosystem/go-cheatsheets">GitHub</a></li>
+                        <li><a href="https://goecosystem.github.io">GoEcosystem</a></li>
+                        <li><a href="https://go.dev">Go Website</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {{ 'now' | date: "%Y" }} GoEcosystem. All repositories licensed under MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
 </html>

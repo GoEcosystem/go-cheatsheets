@@ -3,64 +3,70 @@
 
 @import "{{ site.theme }}";
 
-// Go brand colors
+/* Go Color Variables */
 $go-blue: #00ADD8;
 $go-dark-blue: #0092B8;
 
-// Customize the header
-.page-header {
-  background-color: $go-blue;
-  background-image: linear-gradient(120deg, $go-blue, $go-dark-blue);
+/* Add custom styles after theme import */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif;
 }
 
-// Customize headings and links
-.main-content {
-  h1, h2, h3, h4, h5, h6 {
-    color: $go-blue;
-  }
-  
-  a {
-    color: $go-blue;
-    
-    &:hover {
-      color: $go-dark-blue;
-    }
-  }
-  
-  // Code block styling
-  pre {
-    background-color: #0D1117;
-    border-radius: 6px;
-    padding: 1rem;
-    width: 85%;
-    max-width: 85%;
-    margin: 1.5rem auto;
-  }
-  
-  .highlight {
-    width: 85%;
-    max-width: 85%;
-    margin: 1.5rem auto;
-    
-    pre {
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-    }
-  }
-  
-  // Inline code
-  code {
-    color: $go-dark-blue;
-  }
+h1, h2, h3, h4, h5, h6 {
+  color: #00ADD8;
 }
 
-// Responsive adjustments
-@media screen and (max-width: 42em) {
-  .main-content {
-    pre, .highlight {
-      width: 100%;
-      max-width: 100%;
-    }
+a {
+  color: #00ADD8;
+}
+
+a:hover {
+  color: #0092B8;
+}
+
+/* Clean up code blocks */
+pre {
+  background-color: #0D1117;
+  color: #E2E8F0;
+  padding: 16px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 16px auto;
+  width: 85%;
+  max-width: 85%;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.45;
+  border: none;
+}
+
+.highlight {
+  width: 85%;
+  max-width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.highlight pre {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+/* Inline code */
+:not(pre) > code {
+  background-color: #f6f8fa;
+  color: #0092B8;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 14px;
+}
+
+/* Responsive fixes */
+@media print, screen and (max-width: 600px) {
+  .highlight, pre {
+    width: 100%;
+    max-width: 100%;
   }
 }

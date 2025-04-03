@@ -19,7 +19,7 @@ github:
   owner_url: https://github.com/GoEcosystem
 
 # Theme and plugins
-remote_theme: pages-themes/cayman@v0.2.0
+remote_theme: pages-themes/minimal@v0.2.0
 plugins:
   - jekyll-remote-theme
   - jekyll-relative-links
