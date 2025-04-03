@@ -1,26 +1,26 @@
-name: Deploy GitHub Pages
+name: Build and Deploy GitHub Pages
 
 on:
   push:
     branches:
       - main
-    paths-ignore:
-      - "README.md"
-      - "LICENSE"
-      - ".gitignore"
   workflow_dispatch:
 
+# Set permissions
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
+  # Build the Jekyll site
   build:
+    name: Build Jekyll site
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -42,7 +42,9 @@ jobs:
         with:
           path: '_site'
   
+  # Deploy to GitHub Pages
   deploy:
+    name: Deploy to GitHub Pages
     needs: build
     environment:
       name: github-pages
