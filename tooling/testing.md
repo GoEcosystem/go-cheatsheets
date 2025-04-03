@@ -1,3 +1,10 @@
+---
+layout: default
+title: Testing
+description: Unit testing, benchmarking, and mocking in Go
+permalink: /tooling/testing/
+---
+
 # Go Testing Cheatsheet
 
 Go has built-in testing support in the standard library's `testing` package.
@@ -400,4 +407,3 @@ func TestFileProcessing(t *testing.T) {
         t.Errorf("ProcessFile() = %v, want %v", result, "expected result")
     }
 }
-```

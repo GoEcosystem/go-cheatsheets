@@ -1,3 +1,10 @@
+---
+layout: default
+title: Standard Library
+description: Common packages and functions from the Go standard library
+permalink: /standard-library/
+---
+
 # Go Standard Library Cheatsheet
 
 Go has a rich standard library that provides essential functionality without requiring external dependencies.
@@ -298,4 +305,3 @@ logger.Println("Custom logger message")
 // log.Lshortfile    - Final file name and line: d.go:23
 // log.LUTC          - Use UTC rather than local time
 // log.Lmsgprefix    - Move prefix from beginning of line to before message
-```

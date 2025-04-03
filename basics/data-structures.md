@@ -1,3 +1,10 @@
+---
+layout: default
+title: Data Structures
+description: Arrays, slices, maps, and structs in Go
+permalink: /basics/data-structures/
+---
+
 # Go Data Structures Cheatsheet
 
 ## Arrays

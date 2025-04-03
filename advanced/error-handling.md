@@ -1,3 +1,10 @@
+---
+layout: default
+title: Error Handling
+description: Working with errors and custom error types in Go
+permalink: /advanced/error-handling/
+---
+
 # Go Error Handling Cheatsheet
 
 Go uses explicit error handling with return values rather than exceptions.
@@ -232,4 +239,3 @@ if err := step1(); err != nil {
     }
     return err
 }
-```

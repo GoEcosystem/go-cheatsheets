@@ -1,3 +1,10 @@
+---
+layout: default
+title: Concurrency
+description: Goroutines, channels, and synchronization primitives in Go
+permalink: /concurrency/
+---
+
 # Go Concurrency Cheatsheet
 
 Go's concurrency model is based on goroutines and channels, inspired by Communicating Sequential Processes (CSP).
@@ -331,4 +338,3 @@ squares := square(nums)
 for n := range squares {
     fmt.Println(n)
 }
-```

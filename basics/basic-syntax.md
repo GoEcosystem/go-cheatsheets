@@ -1,3 +1,10 @@
+---
+layout: default
+title: Basic Syntax
+description: Variables, functions, control flow, and basic syntax in Go
+permalink: /basics/basic-syntax/
+---
+
 # Go Basic Syntax Cheatsheet
 
 ## Package Declaration
