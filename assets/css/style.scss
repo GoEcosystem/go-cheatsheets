@@ -1,7 +1,7 @@
 ---
 ---
 
-// Define color variables
+/* Define color variables */
 $primary-color: #00ADD8; /* Go blue */
 $primary-dark: darken($primary-color, 5%);
 $secondary-color: #F7F7F7;
@@ -10,6 +10,11 @@ $light-text: #FFFFFF;
 $border-color: #E9ECEF;
 $code-bg: #f8f9fa;
 $code-comment: #6A737D;
+$go-blue: #00ADD8;
+$go-light-blue: #5DC9E2;
+$go-dark-blue: #007D9C;
+$go-yellow: #FFF200;
+$go-green: #00A29C;
 
 // Base styles
 body {
@@ -45,9 +50,6 @@ body {
 }
 
 .site-logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: $light-text;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -64,6 +66,7 @@ body {
 .logo-text {
   font-size: 1.4rem;
   font-weight: 700;
+  color: $light-text;
 }
 
 .site-nav ul {
@@ -83,22 +86,24 @@ body {
   font-weight: 500;
   padding: 0.5rem 0;
   border-bottom: 3px solid transparent;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, color 0.2s;
   display: block;
 }
 
 .site-nav a:hover, 
 .site-nav a.active {
   border-bottom-color: $light-text;
+  color: $go-yellow;
 }
 
 // Hero section
 .hero-section {
-  background-color: $primary-color;
+  background: linear-gradient(135deg, $go-dark-blue, $go-blue);
   color: $light-text;
   padding: 4rem 0;
   text-align: center;
   margin-bottom: 3rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .hero-logo {
@@ -107,18 +112,28 @@ body {
 
 .hero-image {
   max-width: 150px;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.hero-image:hover {
+  transform: scale(1.05);
 }
 
 .hero-section h1 {
   font-size: 3rem;
   margin-top: 0;
   margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .hero-tagline {
   font-size: 1.25rem;
   margin-bottom: 2rem;
   opacity: 0.9;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-buttons {
@@ -126,6 +141,34 @@ body {
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: $go-yellow;
+  color: $go-dark-blue;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s, transform 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: darken($go-yellow, 5%);
+  transform: translateY(-2px);
+}
+
+.button-outline {
+  background-color: transparent;
+  border: 2px solid $light-text;
+  color: $light-text;
+}
+
+.button-outline:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 // Cheatsheet section
@@ -148,259 +191,265 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .cheatsheet-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.cheatsheet-card h3 {
-  background-color: $primary-color;
+.cheatsheet-card-header {
+  background-color: $go-blue;
   color: $light-text;
-  margin: 0;
-  padding: 1rem;
-}
-
-.cheatsheet-card-content {
   padding: 1.5rem;
-  flex-grow: 1;
+  position: relative;
+  overflow: hidden;
 }
 
-.cheatsheet-card-content p {
-  margin-top: 0;
+.cheatsheet-card-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+  border-radius: 0 0 0 100%;
+  z-index: 1;
+}
+
+.cheatsheet-card-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.cheatsheet-card-body {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.cheatsheet-card-body p {
+  margin: 0 0 1rem;
 }
 
 .cheatsheet-card-footer {
   padding: 1rem 1.5rem;
   border-top: 1px solid $border-color;
   background-color: $secondary-color;
+  display: flex;
+  justify-content: flex-end;
 }
 
-// Page header
-.page-header {
-  margin-bottom: 2rem;
-  border-bottom: 1px solid $border-color;
-  padding-bottom: 1rem;
+// Content styles
+.page-content {
+  margin: 2rem 0 4rem;
 }
 
-.page-header h1 {
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
+.page-content h1 {
   font-size: 2.5rem;
-  color: $primary-color;
-}
-
-.page-description {
-  font-size: 1.1rem;
-  opacity: 0.8;
-  margin-top: 0.5rem;
-}
-
-// Content styling
-.content-section {
-  background-color: #FFFFFF;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  padding: 2rem;
-  margin-bottom: 2rem;
-}
-
-.content-section h2 {
-  color: $primary-color;
   margin-top: 0;
-  border-bottom: 1px solid $border-color;
+  margin-bottom: 1.5rem;
+  color: $go-dark-blue;
+  border-bottom: 2px solid $go-light-blue;
   padding-bottom: 0.5rem;
+}
+
+.page-content h2 {
+  font-size: 1.8rem;
+  margin: 2.5rem 0 1rem;
+  color: $go-dark-blue;
+}
+
+.page-content h3 {
+  font-size: 1.4rem;
+  margin: 2rem 0 0.75rem;
+  color: $go-blue;
+}
+
+.page-content h4 {
+  font-size: 1.2rem;
+  margin: 1.5rem 0 0.75rem;
+  color: $text-color;
+}
+
+.page-content p, .page-content li {
+  margin-bottom: 1rem;
+}
+
+.page-content a {
+  color: $go-blue;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.page-content a:hover {
+  border-bottom-color: $go-blue;
+}
+
+.page-content ul, .page-content ol {
+  padding-left: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
-// Enhanced code blocks styles
-pre {
-  background-color: $code-bg;
-  border: 1px solid darken($code-bg, 10%);
-  border-radius: 6px;
-  padding: 1.2rem;
-  overflow-x: auto;
-  margin: 1.5rem 0;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
-  font-size: 0.9rem;
-  line-height: 1.5;
+.page-content li {
+  margin-bottom: 0.5rem;
 }
 
-code {
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-  font-size: 0.9em;
-  color: #24292e;
+// Code block styles
+pre {
+  background-color: #282c34;
+  color: #abb2bf;
+  padding: 1.25rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  position: relative;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+pre::before {
+  content: 'go';
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 173, 216, 0.8);
+  color: white;
+  padding: 2px 8px;
+  font-size: 12px;
+  border-radius: 0 0 0 4px;
+  font-family: monospace;
 }
 
 pre code {
   display: block;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
   tab-size: 4;
 }
 
-// Syntax highlighting improvements
-.hljs-comment, 
-pre code .comment, 
-pre code [class^="comment"],
-pre code [class*=" comment"] {
-  color: $code-comment;
+:not(pre) > code {
+  background-color: #f0f4f8;
+  color: #d33682;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+// Syntax highlighting - Go specific
+.highlight .keyword, .highlight .kd, .highlight .kn {
+  color: #c678dd; /* Keywords: func, import, package */
+}
+
+.highlight .built_in, .highlight .nb {
+  color: #e5c07b; /* Built-ins: make, len */
+}
+
+.highlight .string, .highlight .s, .highlight .s1, .highlight .s2 {
+  color: #98c379; /* Strings */
+}
+
+.highlight .number, .highlight .mi, .highlight .mf {
+  color: #d19a66; /* Numbers */
+}
+
+.highlight .comment, .highlight .c, .highlight .c1 {
+  color: #7f848e; /* Comments */
   font-style: italic;
 }
 
-.hljs-keyword, 
-pre code .keyword, 
-pre code [class^="keyword"],
-pre code [class*=" keyword"] {
-  color: #d73a49;
-  font-weight: bold;
+.highlight .type, .highlight .nc {
+  color: #e5c07b; /* Types */
 }
 
-.hljs-string, 
-pre code .string, 
-pre code [class^="string"],
-pre code [class*=" string"] {
-  color: #032f62;
+.highlight .function, .highlight .nf {
+  color: #61afef; /* Function names */
 }
 
-.hljs-number, 
-pre code .number, 
-pre code [class^="number"],
-pre code [class*=" number"] {
-  color: #005cc5;
+.highlight .variable, .highlight .nx {
+  color: #e06c75; /* Variable names */
 }
 
-.hljs-function, 
-pre code .function, 
-pre code [class^="function"],
-pre code [class*=" function"] {
-  color: #6f42c1;
-}
-
-// Function section highlighting
-.function-section {
-  margin-bottom: 2.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid $border-color;
-}
-
-.function-section h3 {
-  color: $primary-dark;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  display: inline-block;
-  border-bottom: 2px solid $primary-color;
-  padding-bottom: 0.3rem;
-}
-
-.function-description {
-  margin-bottom: 1.2rem;
-  font-size: 1.05rem;
-}
-
-.function-usage {
-  background-color: lighten($secondary-color, 2%);
-  padding: 1rem;
-  border-left: 4px solid $primary-color;
-  border-radius: 0 6px 6px 0;
-  margin-bottom: 1.2rem;
-  font-size: 0.95rem;
-}
-
-// Better table formatting for cheatsheets
+// Table styles
 table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
-  font-size: 0.95rem;
-  box-shadow: 0 2px 3px rgba(0,0,0,0.1);
   border-radius: 6px;
   overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 th {
-  background-color: $primary-color;
-  color: $light-text;
+  background-color: $go-blue;
+  color: white;
+  font-weight: 600;
   text-align: left;
   padding: 0.75rem 1rem;
-  font-weight: 600;
 }
 
 td {
   padding: 0.75rem 1rem;
   border-top: 1px solid $border-color;
-  vertical-align: top;
 }
 
 tr:nth-child(even) {
-  background-color: lighten($secondary-color, 2%);
+  background-color: rgba(0, 173, 216, 0.05);
 }
 
 tr:hover {
-  background-color: darken($secondary-color, 2%);
+  background-color: rgba(0, 173, 216, 0.1);
 }
 
-// Callouts and notes
-.note, .tip, .warning, .important {
-  padding: 1rem 1.5rem;
+// Callout boxes
+blockquote {
   margin: 1.5rem 0;
-  border-radius: 6px;
-  position: relative;
-  padding-left: 3.5rem;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid $go-blue;
+  background-color: rgba(0, 173, 216, 0.05);
+  border-radius: 0 6px 6px 0;
 }
 
-.note:before, .tip:before, .warning:before, .important:before {
-  content: '';
-  position: absolute;
-  left: 1.2rem;
-  top: 1.2rem;
-  width: 1.5rem;
-  height: 1.5rem;
-  background-size: contain;
-  background-repeat: no-repeat;
+blockquote p:last-child {
+  margin-bottom: 0;
 }
 
-.note {
-  background-color: #e7f5ff;
-  border-left: 4px solid #74c0fc;
+// Special callouts
+blockquote:has(strong:first-child:contains("Note")) {
+  border-left-color: $go-blue;
+  background-color: rgba(0, 173, 216, 0.05);
 }
 
-.note:before {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%2374c0fc' d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM11 7h2v2h-2V7zm0 4h2v6h-2v-6z'/%3E%3C/svg%3E");
+blockquote:has(strong:first-child:contains("Warning")) {
+  border-left-color: #e44d26;
+  background-color: rgba(228, 77, 38, 0.05);
 }
 
-.tip {
-  background-color: #e6fcf5;
-  border-left: 4px solid #3bc9db;
-}
-
-.tip:before {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%233bc9db' d='M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-1-5h2v2h-2v-2zm2-1.645V14h-2v-1.5a1 1 0 0 1 1-1 1.5 1.5 0 1 0-1.471-1.794l-1.962-.393A3.5 3.5 0 1 1 13 13.355z'/%3E%3C/svg%3E");
-}
-
-.warning {
-  background-color: #fff9db;
-  border-left: 4px solid #fcc419;
-}
-
-.warning:before {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%23fcc419' d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-1-5h2v2h-2v-2zm0-8h2v6h-2V7z'/%3E%3C/svg%3E");
-}
-
-.important {
-  background-color: #ffe3e3;
-  border-left: 4px solid #fa5252;
-}
-
-.important:before {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%23fa5252' d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-7v2h2v-2h-2zm0-8v6h2V7h-2z'/%3E%3C/svg%3E");
+blockquote:has(strong:first-child:contains("Tip")) {
+  border-left-color: $go-green;
+  background-color: rgba(0, 162, 156, 0.05);
 }
 
 // Section navigation
 .section-nav {
   background-color: $secondary-color;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   border-radius: 6px;
   margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.section-nav h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+  color: $go-dark-blue;
 }
 
 .section-nav ul {
@@ -409,92 +458,65 @@ tr:hover {
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.section-nav li {
-  margin: 0;
+  gap: 0.5rem 1.5rem;
 }
 
 .section-nav a {
-  display: block;
-  padding: 0.5rem 1rem;
-  background-color: #fff;
-  color: $text-color;
+  color: $go-blue;
   text-decoration: none;
-  border-radius: 4px;
-  transition: all 0.2s;
-  border: 1px solid $border-color;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  display: inline-block;
+  padding: 0.25rem 0;
 }
 
 .section-nav a:hover {
-  background-color: $primary-color;
-  color: #fff;
-  border-color: $primary-color;
+  color: $go-dark-blue;
 }
 
-// Buttons
-.btn {
+// Function section 
+.function-section {
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-left: 3px solid $go-blue;
+}
+
+.function-section h3 {
+  color: $go-dark-blue;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 1rem;
   display: inline-block;
-  padding: 0.5rem 1.5rem;
-  font-weight: 500;
-  text-align: center;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-.btn-primary {
-  background-color: $primary-color;
-  color: $light-text;
-  border: 1px solid $primary-color;
-}
-
-.btn-primary:hover {
-  background-color: $primary-dark;
-  border-color: $primary-dark;
-  color: $light-text;
-}
-
-.btn-secondary {
-  background-color: $light-text;
-  color: $primary-color;
-  border: 1px solid $primary-color;
-}
-
-.btn-secondary:hover {
-  background-color: $secondary-color;
-  color: $primary-color;
-}
-
-.btn-lg {
-  padding: 0.75rem 2rem;
-  font-size: 1.1rem;
 }
 
 // Footer
 .site-footer {
   background-color: $secondary-color;
   padding: 3rem 0;
-  margin-top: 3rem;
+  margin-top: 4rem;
   border-top: 1px solid $border-color;
 }
 
 .footer-content {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
   gap: 2rem;
 }
 
 .footer-col {
   flex: 1;
-  min-width: 200px;
+  min-width: 250px;
 }
 
 .footer-col h3 {
-  color: $primary-color;
+  font-size: 1.2rem;
   margin-top: 0;
+  margin-bottom: 1rem;
+  color: $go-dark-blue;
 }
 
 .footer-col ul {
@@ -513,57 +535,82 @@ tr:hover {
 }
 
 .footer-col a:hover {
-  color: $primary-color;
+  color: $go-blue;
+  text-decoration: underline;
 }
 
 .footer-bottom {
-  margin-top: 2rem;
   text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $border-color;
+  font-size: 0.9rem;
   color: #666;
 }
 
-// Responsive adjustments
+// Responsive styles
 @media (max-width: 768px) {
-  .hero-section h1 {
-    font-size: 2.5rem;
-  }
-  
-  .footer-content {
-    flex-direction: column;
-  }
-  
-  .cheatsheet-grid {
-    grid-template-columns: 1fr;
-  }
-  
   .site-header .container {
     flex-direction: column;
     padding: 1rem 0;
   }
   
-  .site-nav {
-    margin-top: 1rem;
-  }
-  
-  .site-nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
+  .site-logo {
+    margin-bottom: 1rem;
   }
   
   .site-nav li {
     margin: 0 0.75rem;
   }
   
-  pre {
-    padding: 1rem 0.8rem;
-    font-size: 0.85rem;
+  .hero-section h1 {
+    font-size: 2.25rem;
   }
   
-  .function-section {
-    padding-bottom: 1rem;
+  .hero-tagline {
+    font-size: 1.1rem;
+  }
+  
+  .cheatsheet-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
   
   .section-nav ul {
     flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+// Print styles
+@media print {
+  .site-header, .site-footer, .hero-section {
+    display: none;
+  }
+  
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  .page-content {
+    margin: 0;
+  }
+  
+  pre, code {
+    background-color: #f8f9fa !important;
+    color: #000 !important;
+    border: 1px solid #ddd;
+  }
+  
+  .function-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    border: 1px solid #ddd;
+    box-shadow: none;
+  }
+  
+  a {
+    color: #000 !important;
+    text-decoration: underline;
   }
 }
