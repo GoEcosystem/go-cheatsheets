@@ -1,0 +1,8 @@
+name: Disabled Workflows
+
+# This file is to keep track of workflows we've intentionally disabled
+# for documentation purposes.
+
+# The pages-build-deployment workflow from GitHub Pages is disabled
+# We're using our custom jekyll-gh-pages.yml workflow instead
+# This prevents duplicate deployments when pushing to main
