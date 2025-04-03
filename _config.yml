@@ -3,6 +3,7 @@ title: Go Cheatsheets
 description: Quick reference guides for Go programming language
 baseurl: "/go-cheatsheets"
 url: "https://goecosystem.github.io"
+repository: GoEcosystem/go-cheatsheets
 
 # Build settings
 markdown: kramdown
@@ -13,9 +14,12 @@ permalink: pretty
 github:
   is_project_page: true
   repository_url: https://github.com/GoEcosystem/go-cheatsheets
+  repository_name: go-cheatsheets
+  owner_name: GoEcosystem
+  owner_url: https://github.com/GoEcosystem
 
 # Theme and plugins
-remote_theme: pages-themes/minimal@v0.2.0
+theme: jekyll-theme-cayman
 plugins:
   - jekyll-remote-theme
   - jekyll-relative-links
