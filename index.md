@@ -1,106 +1,128 @@
 ---
-layout: default
+layout: cheatsheet
 title: Go Cheatsheets
 description: Quick reference guides for Go programming language
 ---
 
-<div class="hero-section">
-  <div class="container">
-    <div class="hero-logo">
-      <img src="{{ '/assets/images/mascot/gopher_avatar.jpg' | relative_url }}" alt="Go Gopher" class="hero-image" style="width: 120px; border-radius: 50%;">
-    </div>
-    <h1>Go Cheatsheets</h1>
-    <p class="hero-tagline">Quick reference guides for Go programming language</p>
-    <div class="hero-buttons">
-      <a href="https://github.com/GoEcosystem/go-cheatsheets" class="btn btn-primary">View on GitHub</a>
-      <a href="#cheatsheets" class="btn btn-secondary">Explore Cheatsheets</a>
-    </div>
-  </div>
-</div>
+## Overview
 
-<div class="container" id="cheatsheets">
-  <section class="content-section">
-    <h2>Go Quick Reference Guides</h2>
-    <p>These cheatsheets provide concise reference material for Go programming. Each cheatsheet focuses on a specific topic and includes common syntax, patterns, and best practices.</p>
-  </section>
+Go Cheatsheets provide concise reference material for Go programming. Each cheatsheet focuses on a specific topic and includes common syntax, patterns, and best practices.
 
-  <section class="cheatsheet-section">
-    <div class="cheatsheet-grid">
-      <div class="cheatsheet-card">
-        <h3>Basics</h3>
-        <div class="cheatsheet-card-content">
-          <p>Core syntax, variables, functions, and control flow structures in Go.</p>
-          <ul>
-            <li><a href="{{ '/basics/basic-syntax' | relative_url }}">Basic Syntax</a></li>
-            <li><a href="{{ '/basics/data-structures' | relative_url }}">Data Structures</a></li>
-          </ul>
-        </div>
-        <div class="cheatsheet-card-footer">
-          <a href="{{ '/basics/' | relative_url }}" class="btn btn-secondary">View Basics</a>
-        </div>
-      </div>
-      
-      <div class="cheatsheet-card">
-        <h3>Advanced</h3>
-        <div class="cheatsheet-card-content">
-          <p>Advanced Go concepts including interfaces, reflection, and error handling.</p>
-          <ul>
-            <li><a href="{{ '/advanced/interfaces' | relative_url }}">Interfaces</a></li>
-            <li><a href="{{ '/advanced/error-handling' | relative_url }}">Error Handling</a></li>
-            <li><a href="{{ '/advanced/generics' | relative_url }}">Generics</a></li>
-          </ul>
-        </div>
-        <div class="cheatsheet-card-footer">
-          <a href="{{ '/advanced/' | relative_url }}" class="btn btn-secondary">View Advanced</a>
-        </div>
-      </div>
-      
-      <div class="cheatsheet-card">
-        <h3>Concurrency</h3>
-        <div class="cheatsheet-card-content">
-          <p>Go's powerful concurrency primitives including goroutines and channels.</p>
-          <ul>
-            <li><a href="{{ '/concurrency/concurrency' | relative_url }}">Concurrency</a></li>
-          </ul>
-        </div>
-        <div class="cheatsheet-card-footer">
-          <a href="{{ '/concurrency/' | relative_url }}" class="btn btn-secondary">View Concurrency</a>
-        </div>
-      </div>
-      
-      <div class="cheatsheet-card">
-        <h3>Standard Library</h3>
-        <div class="cheatsheet-card-content">
-          <p>Common packages and functions from Go's extensive standard library.</p>
-          <ul>
-            <li><a href="{{ '/standard-library/standard-library' | relative_url }}">Standard Library</a></li>
-          </ul>
-        </div>
-        <div class="cheatsheet-card-footer">
-          <a href="{{ '/standard-library/' | relative_url }}" class="btn btn-secondary">View Standard Library</a>
-        </div>
-      </div>
-      
-      <div class="cheatsheet-card">
-        <h3>Tooling</h3>
-        <div class="cheatsheet-card-content">
-          <p>Go tools for testing, building, and managing Go applications.</p>
-          <ul>
-            <li><a href="{{ '/tooling/testing' | relative_url }}">Testing</a></li>
-            <li><a href="{{ '/tooling/modules' | relative_url }}">Modules</a></li>
-          </ul>
-        </div>
-        <div class="cheatsheet-card-footer">
-          <a href="{{ '/tooling/' | relative_url }}" class="btn btn-secondary">View Tooling</a>
-        </div>
-      </div>
-    </div>
-  </section>
+## Available Cheatsheets
 
-  <section class="content-section">
-    <h2>How to Use</h2>
-    <p>Each cheatsheet is a standalone document focusing on a specific topic. They are designed to be concise, providing just enough information to remind you of syntax or patterns without having to search through extensive documentation.</p>
-    
-    <p>Browse the categories above or view the <a href="https://github.com/GoEcosystem/go-cheatsheets">full repository on GitHub</a>.</p>
-  </section>
-</div>
+### Basics
+
+Core syntax, variables, functions, and control flow structures in Go.
+
+<table>
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="{{ '/basics/basic-syntax' | relative_url }}">Basic Syntax</a></td>
+      <td>Variables, functions, control flow, and basic syntax in Go.</td>
+    </tr>
+    <tr>
+      <td><a href="{{ '/basics/data-structures' | relative_url }}">Data Structures</a></td>
+      <td>Arrays, slices, maps, and structs in Go.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Advanced
+
+Advanced Go concepts including interfaces, reflection, and error handling.
+
+<table>
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="{{ '/advanced/interfaces' | relative_url }}">Interfaces</a></td>
+      <td>Interface definitions, type assertions, and empty interfaces.</td>
+    </tr>
+    <tr>
+      <td><a href="{{ '/advanced/error-handling' | relative_url }}">Error Handling</a></td>
+      <td>Error handling patterns, custom errors, and error wrapping.</td>
+    </tr>
+    <tr>
+      <td><a href="{{ '/advanced/generics' | relative_url }}">Generics</a></td>
+      <td>Type parameters, constraints, and generic data structures.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Concurrency
+
+Go's powerful concurrency primitives including goroutines and channels.
+
+<table>
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="{{ '/concurrency/concurrency' | relative_url }}">Concurrency</a></td>
+      <td>Goroutines, channels, select statements, and synchronization patterns.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Standard Library
+
+Common packages and functions from Go's extensive standard library.
+
+<table>
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="{{ '/standard-library/standard-library' | relative_url }}">Standard Library</a></td>
+      <td>IO Operations, HTTP Client/Server, JSON handling, and other common packages.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Tooling
+
+Go tools for testing, building, and managing Go applications.
+
+<table>
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="{{ '/tooling/testing' | relative_url }}">Testing</a></td>
+      <td>Unit testing, benchmarking, and test utilities in Go.</td>
+    </tr>
+    <tr>
+      <td><a href="{{ '/tooling/modules' | relative_url }}">Modules</a></td>
+      <td>Go modules for dependency management and versioning.</td>
+    </tr>
+  </tbody>
+</table>
+
+## How to Use
+
+Each cheatsheet is a standalone document focusing on a specific topic. They are designed to be concise, providing just enough information to remind you of syntax or patterns without having to search through extensive documentation.
+
+Browse the categories above or view the [full repository on GitHub](https://github.com/GoEcosystem/go-cheatsheets).

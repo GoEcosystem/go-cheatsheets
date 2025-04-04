@@ -1,0 +1,157 @@
+---
+layout: default
+---
+
+<div class="api-documentation">
+  {{ content }}
+</div>
+
+<style>
+  /* API Documentation specific styling */
+  .api-documentation {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .api-documentation h1 {
+    color: #00ADD8;
+    margin-bottom: 1.5rem;
+  }
+  
+  .api-documentation h2 {
+    color: #0D1117;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #E9ECEF;
+  }
+  
+  .api-documentation h3 {
+    color: #0092B8;
+    margin-top: 1.5rem;
+  }
+  
+  .api-documentation h4 {
+    color: #333;
+    margin-top: 1.2rem;
+  }
+  
+  .api-documentation table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 2rem 0;
+  }
+  
+  .api-documentation th {
+    background-color: #F0F5F9;
+    padding: 0.75rem;
+    text-align: left;
+    border: 1px solid #E9ECEF;
+  }
+  
+  .api-documentation td {
+    padding: 0.75rem;
+    border: 1px solid #E9ECEF;
+  }
+  
+  .api-documentation tr:nth-child(even) {
+    background-color: #F8F9FA;
+  }
+  
+  .api-documentation pre {
+    background-color: #0D1117;
+    color: #E2E8F0;
+    padding: 1rem;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin: 1rem 0;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .api-documentation code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  }
+  
+  .api-documentation pre code {
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+    font-size: 0.9rem;
+  }
+  
+  .api-documentation p code, 
+  .api-documentation li code, 
+  .api-documentation td code {
+    background-color: #F0F5F9;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    color: #0092B8;
+  }
+  
+  .api-documentation .endpoint-method {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .api-documentation .endpoint-method.get {
+    background-color: #D1ECF1;
+    color: #0C5460;
+  }
+  
+  .api-documentation .endpoint-method.post {
+    background-color: #D4EDDA;
+    color: #155724;
+  }
+  
+  .api-documentation .endpoint-method.put {
+    background-color: #FFF3CD;
+    color: #856404;
+  }
+  
+  .api-documentation .endpoint-method.delete {
+    background-color: #F8D7DA;
+    color: #721C24;
+  }
+  
+  .api-documentation blockquote {
+    border-left: 4px solid #00ADD8;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+    background-color: #F0F5F9;
+  }
+  
+  .api-documentation blockquote p {
+    margin-bottom: 0;
+  }
+  
+  .api-documentation .parameters {
+    margin-bottom: 1.5rem;
+  }
+  
+  .api-documentation .parameter-name {
+    font-weight: bold;
+    color: #0092B8;
+  }
+  
+  .api-documentation .parameter-type {
+    color: #6C757D;
+    font-size: 0.9rem;
+  }
+  
+  .api-documentation .parameter-required {
+    color: #DC3545;
+    font-size: 0.9rem;
+  }
+  
+  .api-documentation .parameter-optional {
+    color: #6C757D;
+    font-size: 0.9rem;
+  }
+</style>
