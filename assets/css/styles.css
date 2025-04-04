@@ -1,6 +1,6 @@
 /* 
  * GoEcosystem Documentation - Main Stylesheet
- * This file contains the shared styles for all Go Cheatsheets pages
+ * This file contains the shared styles for all pages across the GoEcosystem documentation
  */
 
 /* Base Variables */
@@ -147,25 +147,17 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
-  border-radius: 6px;
-  overflow: hidden;
 }
 
 th, td {
   padding: 0.75rem;
   text-align: left;
-  border-bottom: 1px solid var(--gray-300);
+  border: 1px solid var(--gray-300);
 }
 
 th {
   background-color: var(--gray-100);
   font-weight: 600;
-  color: var(--gray-800);
-}
-
-tr:last-child td {
-  border-bottom: none;
 }
 
 /* Layout */
@@ -226,6 +218,32 @@ tr:last-child td {
   color: white;
 }
 
+/* Page Header */
+.page-header {
+  margin-bottom: 2rem;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.page-description {
+  font-size: 1.2rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* Main Content */
+.site-content {
+  padding: 2rem 0;
+}
+
 /* Hero Section */
 .hero {
   background-color: var(--primary-color);
@@ -236,8 +254,8 @@ tr:last-child td {
 
 .hero h1 {
   font-size: 3rem;
-  color: white;
   margin-bottom: 1rem;
+  color: white;
 }
 
 .hero p {
@@ -253,104 +271,6 @@ tr:last-child td {
   gap: 1rem;
 }
 
-/* Main Content */
-.main-content {
-  padding: 3rem 0;
-}
-
-/* Page Header */
-.page-header {
-  margin-bottom: 2rem;
-}
-
-.page-header h1 {
-  margin-bottom: 0.5rem;
-}
-
-.page-description {
-  font-size: 1.1rem;
-  color: var(--gray-600);
-  margin-bottom: 2rem;
-}
-
-/* Home Sections */
-.section {
-  margin-bottom: 4rem;
-}
-
-.section-title {
-  color: var(--gray-900);
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.section-description {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 2rem auto;
-  color: var(--gray-600);
-}
-
-/* Feature Cards */
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
-}
-
-.feature {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.feature-icon {
-  color: var(--primary-color);
-  font-size: 1.5rem;
-  flex-shrink: 0;
-}
-
-.feature-content h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.25rem;
-}
-
-.feature-content p {
-  margin: 0;
-  color: var(--gray-600);
-}
-
-/* Card Layout */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.card {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  padding: 1.5rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.card h3 {
-  margin-top: 0;
-}
-
-.card-icon {
-  color: var(--primary-color);
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
 /* Buttons */
 .btn {
   display: inline-block;
@@ -364,86 +284,147 @@ tr:last-child td {
 }
 
 .btn-primary {
-  background-color: var(--primary-color);
-  color: white;
+  background-color: white;
+  color: var(--primary-color);
 }
 
 .btn-primary:hover {
-  background-color: var(--primary-dark);
-  color: white;
+  background-color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
 }
 
 .btn-secondary {
-  background-color: white;
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .btn-secondary:hover {
-  background-color: var(--gray-100);
-  color: var(--primary-dark);
+  background-color: rgba(255, 255, 255, 0.2);
   text-decoration: none;
+}
+
+/* Cards */
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.card p {
+  color: var(--gray-600);
+  margin-bottom: 1.5rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Features */
+.features {
+  margin-bottom: 4rem;
+}
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 1rem;
+  color: var(--primary-color);
+}
+
+.feature-content h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.feature-content p {
+  margin: 0;
+  color: var(--gray-600);
 }
 
 /* Code Blocks */
 .code-block {
-  background-color: var(--dark-color);
-  border-radius: 8px;
-  overflow: hidden;
   margin-bottom: 2rem;
 }
 
 .code-header {
   background-color: #1A1E22;
-  padding: 0.5rem 1rem;
-  border-bottom: 1px solid #2D333B;
+  padding: 0.75rem 1rem;
+  border-radius: 6px 6px 0 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.code-title {
-  color: white;
+  font-family: var(--font-family-mono);
   font-size: 0.9rem;
-  margin: 0;
+  color: white;
 }
 
 .code-content {
-  padding: 1rem;
-  overflow-x: auto;
+  background-color: var(--dark-color);
+  border-radius: 0 0 6px 6px;
+  overflow: hidden;
 }
 
 .code-content pre {
   margin: 0;
-  padding: 0;
-  background-color: transparent;
+  padding: 1rem;
+  border-radius: 0;
 }
 
+/* Terminal */
 .terminal {
   background-color: var(--dark-color);
   color: white;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 2rem;
   font-family: var(--font-family-mono);
-  font-size: 0.9rem;
+  padding: 1.5rem;
+  border-radius: 6px;
+  margin-bottom: 2rem;
   line-height: 1.5;
-  overflow-x: auto;
+  font-size: 0.9rem;
 }
 
-.terminal .command {
-  color: #ADB5BD;
+.terminal-line {
+  margin-bottom: 0.5rem;
 }
 
-.terminal .command::before {
+.terminal-line::before {
   content: "$ ";
   color: var(--primary-color);
+  font-weight: bold;
+}
+
+.terminal .output {
+  color: var(--gray-400);
+  padding-left: 1rem;
 }
 
 /* Footer */
 .site-footer {
-  background-color: var(--gray-900);
+  background-color: var(--dark-color);
   color: var(--gray-400);
   padding: 3rem 0 1.5rem;
   margin-top: 4rem;
@@ -483,34 +464,13 @@ tr:last-child td {
 .footer-bottom {
   text-align: center;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--gray-800);
+  border-top: 1px solid #2A3038;
 }
-
-/* Syntax Highlighting */
-.highlight .k, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt { color: #ff7b72; } /* Keyword */
-.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx { color: #a5d6ff; } /* String */
-.highlight .na, .highlight .nc, .highlight .nd, .highlight .ne, .highlight .nf, .highlight .nx { color: #d2a8ff; } /* Names */
-.highlight .nb { color: #7ee787; } /* Built-in */
-.highlight .c, .highlight .c1, .highlight .cm, .highlight .cp, .highlight .cs { color: #8b949e; } /* Comment */
-.highlight .mi, .highlight .mf, .highlight .mh, .highlight .mo { color: #f2cc60; } /* Numbers */
-.highlight .nt, .highlight .nl { color: #ff7b72; } /* Tags */
-.highlight .o, .highlight .ow { color: #ff7b72; } /* Operators */
-.highlight .p, .highlight .pi { color: #e6edf3; } /* Punctuation */
-.highlight .gd { color: #ffa198; background-color: rgba(255, 129, 130, 0.15); } /* Deleted */
-.highlight .gi { color: #7ee787; background-color: rgba(56, 139, 95, 0.15); } /* Inserted */
 
 /* Responsive Adjustments */
 @media (max-width: 992px) {
   .container {
     padding: 0 1.5rem;
-  }
-  
-  .hero {
-    padding: 3rem 0;
-  }
-  
-  .hero h1 {
-    font-size: 2.5rem;
   }
 }
 
@@ -530,29 +490,39 @@ tr:last-child td {
     width: max-content;
   }
   
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero p {
+    font-size: 1.1rem;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
   .hero {
-    padding: 2rem 0;
+    padding: 3rem 0;
   }
   
   .hero h1 {
     font-size: 2rem;
   }
   
-  .hero p {
-    font-size: 1rem;
-  }
-  
   .hero-buttons {
     flex-direction: column;
-  }
-}
-
-@media (max-width: 576px) {
-  .cards, .features {
-    grid-template-columns: 1fr;
+    align-items: center;
   }
   
-  .footer-content {
+  .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .cards {
     grid-template-columns: 1fr;
   }
 }

@@ -7,19 +7,22 @@
     <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
     
     <!-- SEO -->
-    <meta name="keywords" content="Go, Cheatsheets, Documentation, API, GoEcosystem">
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="keywords" content="Go, Cheatsheets, Documentation, GoEcosystem">
     <meta name="author" content="GoEcosystem">
-    {% seo %}
 </head>
 <body>
     <header class="site-header">
         <div class="container">
+            <a href="{{ '/' | relative_url }}" class="site-logo">
+                <span class="logo-text">Go Cheatsheets</span>
+            </a>
             <nav class="site-nav">
                 <ul>
                     <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
@@ -34,35 +37,17 @@
         </div>
     </header>
 
-    {% if page.hero %}
-    <section class="hero">
+    <main class="site-content">
         <div class="container">
-            <h1>{{ page.hero.title }}</h1>
-            <p>{{ page.hero.description }}</p>
-            {% if page.hero.buttons %}
-            <div class="hero-buttons">
-                {% for button in page.hero.buttons %}
-                <a href="{{ button.url | relative_url }}" class="btn btn-{{ button.type }}">{{ button.text }}</a>
-                {% endfor %}
+            {% if page.title and page.url != '/' %}
+            <div class="page-header">
+                <h1>{{ page.title }}</h1>
+                {% if page.description %}
+                <p class="page-description">{{ page.description }}</p>
+                {% endif %}
             </div>
             {% endif %}
-        </div>
-    </section>
-    {% else %}
-    {% if page.header != false %}
-    <section class="page-header" style="background-image: linear-gradient(to bottom, #3498db, #2ecc71);">
-        <div class="container">
-            <h1 style="color: white;">{{ page.title }}</h1>
-            {% if page.description %}
-            <p style="color: white;">{{ page.description }}</p>
-            {% endif %}
-        </div>
-    </section>
-    {% endif %}
-    {% endif %}
-
-    <main class="main-content">
-        <div class="container">
+            
             {{ content }}
         </div>
     </main>
