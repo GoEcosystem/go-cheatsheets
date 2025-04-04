@@ -3,16 +3,16 @@
 
 /* 
  * GoEcosystem Documentation - Main Stylesheet
- * Matching the Go Web Scraper API documentation style
+ * Exactly matching the Go Web Scraper API documentation style
  */
 
 /* Base Variables */
 :root {
   /* Colors */
-  --primary-color: #00ADD8;       /* Go blue */
+  --primary-color: #00ADD8;       /* Go blue - bright cyan blue from the image */
   --primary-light: #5DC9E2;
   --primary-dark: #0092B8;
-  --dark-color: #0D1117;
+  --dark-color: #0D1117;          /* Dark header color */
   --light-color: #F8F9FA;
   --gray-100: #F8F9FA;
   --gray-200: #E9ECEF;
@@ -65,7 +65,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-top: 2rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--gray-300);
@@ -82,10 +82,10 @@ p {
   padding: 0 1rem;
 }
 
-/* Header */
+/* Header - exactly matching the screenshot */
 .site-header {
   background-color: var(--dark-color);
-  padding: 1rem 0;
+  padding: 0.75rem 0;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -93,37 +93,25 @@ p {
 
 .site-header .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Center the navigation to match the image */
   align-items: center;
-}
-
-.site-logo {
-  display: flex;
-  align-items: center;
-  color: white;
-  font-weight: 700;
-  font-size: 1.5rem;
-  text-decoration: none;
-}
-
-.logo-image {
-  margin-right: 0.75rem;
-  border-radius: 50%;
 }
 
 .site-nav ul {
   display: flex;
   list-style-type: none;
   margin: 0;
+  padding: 0;
 }
 
 .site-nav li {
-  margin: 0 0 0 1.5rem;
+  margin: 0 1rem;
 }
 
 .site-nav a {
   color: var(--gray-300);
   font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .site-nav a:hover, .site-nav a.active {
@@ -133,22 +121,24 @@ p {
 
 /* API Header - exactly like Go Web Scraper */
 .api-header {
-  background-color: #00ADD8;
+  background-color: #00ADD8; /* Exact cyan blue color from the image */
   color: white;
-  padding: 3rem 0;
+  padding: 2.5rem 0;
   margin-bottom: 2rem;
+  text-align: center; /* Center the text to match the image */
 }
 
 .api-header h1 {
   color: white;
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 2rem;
+  font-weight: 500; /* Match the lighter font weight from the image */
 }
 
 .api-header p {
   color: rgba(255, 255, 255, 0.9);
   margin: 0.5rem 0 0;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 /* API Content */
@@ -161,6 +151,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
+  font-size: 0.9rem; /* Match font size from image */
 }
 
 th {
@@ -249,22 +240,13 @@ p code, li code, td code {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .site-header .container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .site-nav {
-    margin-top: 1rem;
-    width: 100%;
-  }
-  
   .site-nav ul {
     flex-wrap: wrap;
+    justify-content: center;
   }
   
   .site-nav li {
-    margin: 0.5rem 1rem 0.5rem 0;
+    margin: 0.5rem 0.75rem;
   }
   
   .footer-content {
