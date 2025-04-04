@@ -2,7 +2,7 @@
 layout: cheatsheet
 title: Go Modules
 description: Go modules for dependency management, versioning, and project organization
-permalink: /go-cheatsheets/tooling/modules/
+permalink: /tooling/modules/
 ---
 
 # Go Modules

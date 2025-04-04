@@ -2,7 +2,7 @@
 layout: cheatsheet
 title: Testing
 description: Unit testing, benchmarking, and test utilities in Go
-permalink: /go-cheatsheets/tooling/testing/
+permalink: /tooling/testing/
 ---
 
 # Go Testing
@@ -270,4 +270,3 @@ func FuzzAdd(f *testing.F) {
 
 // Run fuzz tests
 // go test -fuzz=Fuzz
-```

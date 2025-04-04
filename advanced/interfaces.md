@@ -2,7 +2,7 @@
 layout: cheatsheet
 title: Interfaces
 description: Interface definitions, type assertions, and empty interfaces
-permalink: /go-cheatsheets/advanced/interfaces/
+permalink: /advanced/interfaces/
 ---
 
 # Go Interfaces

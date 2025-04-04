@@ -2,7 +2,7 @@
 layout: cheatsheet
 title: Data Structures
 description: Arrays, slices, maps, and structs in Go
-permalink: /go-cheatsheets/basics/data-structures/
+permalink: /basics/data-structures/
 ---
 
 # Go Data Structures Cheatsheet

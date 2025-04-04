@@ -2,7 +2,7 @@
 layout: cheatsheet
 title: Standard Library
 description: Common packages and functions from Go's extensive standard library
-permalink: /go-cheatsheets/standard-library/standard-library/
+permalink: /standard-library/standard-library/
 ---
 
 # Go Standard Library
@@ -201,4 +201,3 @@ func doWork(ctx context.Context) error {
         return nil
     }
 }
-```

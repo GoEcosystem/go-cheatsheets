@@ -2,7 +2,7 @@
 layout: cheatsheet
 title: Error Handling
 description: Error handling patterns, custom errors, and error wrapping
-permalink: /go-cheatsheets/advanced/error-handling/
+permalink: /advanced/error-handling/
 ---
 
 # Go Error Handling

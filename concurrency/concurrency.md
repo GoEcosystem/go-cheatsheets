@@ -2,7 +2,7 @@
 layout: cheatsheet
 title: Concurrency
 description: Goroutines, channels, select statements, and synchronization patterns
-permalink: /go-cheatsheets/concurrency/concurrency/
+permalink: /concurrency/concurrency/
 ---
 
 # Go Concurrency
@@ -209,4 +209,3 @@ func fanOutFanIn(input <-chan int) <-chan int {
     // Fan in from multiple channels
     return merge(channels...)
 }
-```

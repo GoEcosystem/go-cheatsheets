@@ -2,7 +2,7 @@
 layout: cheatsheet
 title: Generics
 description: Type parameters, constraints, and generic data structures
-permalink: /go-cheatsheets/advanced/generics/
+permalink: /advanced/generics/
 ---
 
 # Go Generics
