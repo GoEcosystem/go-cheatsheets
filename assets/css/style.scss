@@ -1,35 +1,21 @@
 ---
 ---
 
-/* 
- * GoEcosystem Documentation - Main Stylesheet
- * Matching the Go Web Scraper site style
- */
+// Go Cheatsheets - Styling matching Go Web Scraper API
+// Using the official Go color scheme
 
-/* Base Variables */
-:root {
-  /* Colors */
-  --primary-color: #00A4D8;       /* Go Web Scraper cyan */
-  --primary-light: #00D7F7;
-  --primary-dark: #0097C6;
-  --dark-color: #0D1117;          /* Dark header color */
-  --light-color: #F8F9FA;
-  --gray-100: #F8F9FA;
-  --gray-200: #E9ECEF;
-  --gray-300: #DEE2E6;
-  --gray-400: #CED4DA;
-  --gray-500: #ADB5BD;
-  --gray-600: #6C757D;
-  --gray-700: #495057;
-  --gray-800: #343A40;
-  --gray-900: #212529;
-  
-  /* Typography */
-  --font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  --font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-}
+// Define color variables - exact match to Go Web Scraper API
+$primary-color: #00ADD8;       // Go Web Scraper cyan
+$primary-light: #0092B8;       // Lighter shade
+$primary-dark: #0089A7;        // Darker shade
+$dark-bg: #0D1117;             // Dark header background
+$light-bg: #F8F9FA;            // Light background
+$text-color: #212529;          // Main text color
 
-/* Reset & Base */
+// Import cayman theme if needed
+// @import 'jekyll-theme-cayman';
+
+// Reset & Base
 * {
   box-sizing: border-box;
   margin: 0;
@@ -41,24 +27,24 @@ html {
 }
 
 body {
-  font-family: var(--font-family-sans);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.6;
-  color: var(--gray-800);
+  color: $text-color;
   background-color: white;
 }
 
 a {
-  color: var(--primary-color);
+  color: $primary-color;
   text-decoration: none;
-}
-
-a:hover {
-  color: var(--primary-dark);
-  text-decoration: underline;
+  
+  &:hover {
+    color: $primary-dark;
+    text-decoration: underline;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: var(--gray-900);
+  color: $text-color;
   line-height: 1.3;
   margin-bottom: 1rem;
   font-weight: 600;
@@ -74,7 +60,7 @@ h2 {
   font-size: 1.75rem;
   margin-top: 2rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--gray-300);
+  border-bottom: 1px solid #DEE2E6;
 }
 
 h3 {
@@ -86,73 +72,77 @@ p {
   margin-bottom: 1rem;
 }
 
-/* Container */
+// Container
 .container {
   max-width: 960px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-/* Header - exactly matching Go Web Scraper */
+// Header - exactly matching Go Web Scraper
 .site-header {
-  background-color: var(--dark-color);
+  background-color: $dark-bg;
   padding: 0.5rem 0;
   position: sticky;
   top: 0;
   z-index: 100;
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
-.site-header .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.site-nav {
+  ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    margin: 0 1rem;
+  }
+  
+  a {
+    color: #DEE2E6;
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-decoration: none;
+    
+    &:hover, &.active {
+      color: white;
+      text-decoration: none;
+    }
+  }
 }
 
-.site-nav ul {
-  display: flex;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.site-nav li {
-  margin: 0 1rem;
-}
-
-.site-nav a {
-  color: var(--gray-300);
-  font-weight: 500;
-  font-size: 0.875rem;
-}
-
-.site-nav a:hover, .site-nav a.active {
-  color: white;
-  text-decoration: none;
-}
-
-/* Hero Banner - exactly matching Go Web Scraper */
+// Hero Banner - exactly matching Go Web Scraper
 .hero-banner {
-  background-color: var(--primary-color);
+  background-color: $primary-color;
   color: white;
   padding: 3rem 0;
   text-align: center;
-}
-
-.hero-banner h1 {
-  color: white;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.hero-banner p {
-  color: white;
-  font-size: 1.25rem;
-  margin-bottom: 1.5rem;
-  opacity: 0.9;
-}
-
-.hero-buttons {
-  margin-top: 1.5rem;
+  
+  h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  
+  p {
+    color: white;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+  
+  .hero-buttons {
+    margin-top: 1.5rem;
+  }
 }
 
 .btn {
@@ -170,24 +160,14 @@ p {
   color: white;
   border: 2px solid white;
   background: transparent;
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+  }
 }
 
-.btn-outline:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  text-decoration: none;
-}
-
-/* Section styling */
-.section {
-  padding: 3rem 0;
-}
-
-.section-title {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-/* Card layout - matching Go Web Scraper */
+// Card layout - matching Go Web Scraper
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -201,193 +181,139 @@ p {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-content {
+    padding: 1.5rem;
+  }
+  
+  .card-title {
+    color: $primary-color;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+  }
+  
+  .card-description {
+    color: #6C757D;
+    margin-bottom: 1.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .card-link {
+    color: $primary-color;
+    font-weight: 500;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+// Section styling
+.section {
+  padding: 3rem 0;
+  
+  .section-title {
+    color: $primary-color;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
 }
 
-.card-content {
-  padding: 1.5rem;
-}
-
-.card-title {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.card-description {
-  color: var(--gray-700);
-  margin-bottom: 1rem;
-}
-
-.card-link {
-  font-weight: 500;
-  display: inline-block;
-  margin-top: 0.5rem;
-}
-
-/* Feature list - like Go Web Scraper */
-.feature-list {
-  margin: 2rem 0;
-}
-
-.feature-item {
-  display: flex;
-  margin-bottom: 1.5rem;
-  align-items: flex-start;
-}
-
-.feature-icon {
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  margin-right: 1rem;
-  color: var(--primary-color);
-}
-
-.feature-content {
-  flex-grow: 1;
-}
-
-.feature-title {
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-.feature-description {
-  color: var(--gray-700);
-}
-
-/* Tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  font-size: 0.9rem;
-}
-
-th {
-  background-color: var(--gray-100);
-  padding: 0.75rem;
-  text-align: left;
-  border: 1px solid var(--gray-300);
-  font-weight: 600;
-}
-
-td {
-  padding: 0.75rem;
-  border: 1px solid var(--gray-300);
-}
-
-tr:nth-child(even) {
-  background-color: var(--gray-100);
-}
-
-/* Code blocks */
+// Code blocks
 pre {
-  background-color: var(--dark-color);
-  color: var(--gray-200);
+  background-color: $dark-bg;
+  border-radius: 8px;
   padding: 1rem;
-  border-radius: 5px;
-  overflow-x: auto;
-  margin: 0 0 1.5rem 0;
-  width: 100%;
-  font-family: var(--font-family-mono);
-  font-size: 0.9rem;
+  overflow: auto;
+  margin: 1rem 0;
 }
 
 code {
-  font-family: var(--font-family-mono);
-}
-
-p code, li code, td code {
-  background-color: var(--gray-100);
-  padding: 0.2rem 0.4rem;
-  border-radius: 3px;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
   font-size: 0.9rem;
-  color: var(--primary-dark);
 }
 
-/* Getting Started section - like Go Web Scraper */
+// Terminal display
 .getting-started {
-  background-color: var(--gray-100);
+  background-color: $light-bg;
   padding: 3rem 0;
-  margin: 3rem 0 0 0;
-}
-
-.getting-started h2 {
-  text-align: center;
-  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .terminal {
-  background-color: var(--dark-color);
-  color: var(--light-color);
-  padding: 1.5rem;
-  border-radius: 6px;
-  margin: 0 auto;
-  max-width: 800px;
-  font-family: var(--font-family-mono);
+  background-color: $dark-bg;
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  color: #E9ECEF;
   font-size: 0.9rem;
-  line-height: 1.6;
-  overflow-x: auto;
+  line-height: 1.5;
+  margin-top: 1.5rem;
+  
+  .terminal-line {
+    margin-bottom: 0.5rem;
+  }
 }
 
-.terminal-line {
-  margin-bottom: 0.5rem;
-}
-
-/* Footer */
+// Footer
 .site-footer {
-  background-color: var(--gray-100);
-  padding: 2rem 0;
-  border-top: 1px solid var(--gray-200);
-  margin-top: 3rem;
+  background-color: $light-bg;
+  border-top: 1px solid #E9ECEF;
+  padding: 3rem 0;
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .footer-col {
+    h3 {
+      color: $primary-color;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    li {
+      margin-bottom: 0.5rem;
+    }
+    
+    a {
+      color: #6C757D;
+      text-decoration: none;
+      
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+  
+  .footer-bottom {
+    border-top: 1px solid #E9ECEF;
+    padding-top: 1.5rem;
+    text-align: center;
+    color: #6C757D;
+    font-size: 0.85rem;
+  }
 }
 
-.footer-content {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.footer-col {
-  flex: 1;
-  min-width: 200px;
-  margin-bottom: 1.5rem;
-  padding-right: 2rem;
-}
-
-.footer-col h3 {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
-
-.footer-col ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.footer-col li {
-  margin-bottom: 0.5rem;
-}
-
-.footer-bottom {
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--gray-200);
-  text-align: center;
-  color: var(--gray-600);
-  font-size: 0.9rem;
-}
-
-/* API Documentation styling */
-.api-content {
-  margin: 2rem 0;
-}
-
-/* Responsive adjustments */
+// Responsive styles
 @media (max-width: 768px) {
   .site-nav ul {
     flex-wrap: wrap;
@@ -395,7 +321,15 @@ p code, li code, td code {
   }
   
   .site-nav li {
-    margin: 0.5rem 0.75rem;
+    margin: 0.25rem 0.5rem;
+  }
+  
+  .hero-banner {
+    padding: 2rem 0;
+    
+    h1 {
+      font-size: 2rem;
+    }
   }
   
   .card-grid {
@@ -403,11 +337,7 @@ p code, li code, td code {
   }
   
   .footer-content {
-    flex-direction: column;
-  }
-  
-  .footer-col {
-    width: 100%;
-    padding-right: 0;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
