@@ -22,12 +22,12 @@
         <div class="container">
             <nav class="site-nav">
                 <ul>
-                    <li><a href="{{ '/' | relative_url }}">Home</a></li>
-                    <li><a href="{{ '/basics/' | relative_url }}">Basics</a></li>
-                    <li><a href="{{ '/advanced/' | relative_url }}">Advanced</a></li>
-                    <li><a href="{{ '/concurrency/' | relative_url }}">Concurrency</a></li>
-                    <li><a href="{{ '/standard-library/' | relative_url }}">Standard Library</a></li>
-                    <li><a href="{{ '/tooling/' | relative_url }}">Tooling</a></li>
+                    <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
+                    <li><a href="{{ '/basics/' | relative_url }}" {% if page.url contains '/basics/' %}class="active"{% endif %}>Basics</a></li>
+                    <li><a href="{{ '/advanced/' | relative_url }}" {% if page.url contains '/advanced/' %}class="active"{% endif %}>Advanced</a></li>
+                    <li><a href="{{ '/concurrency/' | relative_url }}" {% if page.url contains '/concurrency/' %}class="active"{% endif %}>Concurrency</a></li>
+                    <li><a href="{{ '/standard-library/' | relative_url }}" {% if page.url contains '/standard-library/' %}class="active"{% endif %}>Standard Library</a></li>
+                    <li><a href="{{ '/tooling/' | relative_url }}" {% if page.url contains '/tooling/' %}class="active"{% endif %}>Tooling</a></li>
                     <li><a href="https://github.com/GoEcosystem/go-cheatsheets">GitHub</a></li>
                 </ul>
             </nav>
@@ -37,23 +37,35 @@
     {% if page.url == "/" %}
     <div class="hero-banner">
         <div class="container">
-            <h1 class="hero-title">Go Cheatsheets</h1>
-            <p class="hero-description">A comprehensive reference guide for Go programming language syntax, standard library usage, and best practices.</p>
+            <h1>Go Cheatsheets</h1>
+            <p>A comprehensive reference guide for Go programming language based on Go 1.24.1 documentation</p>
             <div class="hero-buttons">
                 <a href="https://github.com/GoEcosystem/go-cheatsheets" class="btn btn-outline">View on GitHub</a>
+                <a href="{{ '/basics/' | relative_url }}" class="btn btn-outline">Browse Cheatsheets</a>
             </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="page-header">
+        <div class="container">
+            <h1>{{ page.title }}</h1>
+            {% if page.description %}<p class="page-description">{{ page.description }}</p>{% endif %}
         </div>
     </div>
     {% endif %}
     
-    {{ content }}
+    <main class="content">
+        <div class="container">
+            {{ content }}
+        </div>
+    </main>
 
     <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col">
                     <h3>Go Cheatsheets</h3>
-                    <p>Quick reference guides for Go programming language syntax and patterns.</p>
+                    <p>Quick reference guides for Go programming language syntax and patterns, based on Go 1.24.1 documentation.</p>
                 </div>
                 <div class="footer-col">
                     <h3>Resources</h3>

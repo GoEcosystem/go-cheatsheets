@@ -1,21 +1,20 @@
 ---
 ---
 
-// Go Cheatsheets - Styling matching Go Web Scraper API
-// Using the official Go color scheme
+/* Go Cheatsheets - Styling matching Go Web Scraper API */
+/* Using the official Go color scheme */
 
-// Define color variables - exact match to Go Web Scraper API
-$primary-color: #00ADD8;       // Go Web Scraper cyan
-$primary-light: #0092B8;       // Lighter shade
-$primary-dark: #0089A7;        // Darker shade
-$dark-bg: #0D1117;             // Dark header background
-$light-bg: #F8F9FA;            // Light background
-$text-color: #212529;          // Main text color
+/* Define color variables - exact match to Go Web Scraper API */
+$primary-color: #00ADD8;
+$primary-light: #0092B8;
+$primary-dark: #0089A7;
+$dark-bg: #0D1117;
+$light-bg: #F8F9FA;
+$text-color: #212529;
 
-// Import cayman theme if needed
-// @import 'jekyll-theme-cayman';
+@import "jekyll-theme-cayman";
 
-// Reset & Base
+/* Reset & Base */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -227,6 +226,78 @@ p {
   }
 }
 
+// Page header styling
+.page-header {
+  background-color: $primary-color;
+  color: white;
+  padding: 2rem 0;
+  
+  h1 {
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+  
+  .page-description {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0;
+  }
+}
+
+// Table styling
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+th {
+  background-color: $light-bg;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: $text-color;
+  border-bottom: 1px solid #DEE2E6;
+}
+
+td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #DEE2E6;
+  vertical-align: top;
+  
+  a {
+    color: $primary-color;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+// Content area
+.content {
+  padding: 2rem 0;
+  
+  h2 {
+    margin-top: 2rem;
+    color: $text-color;
+    font-weight: 600;
+  }
+  
+  h3 {
+    margin-top: 1.5rem;
+    color: $text-color;
+    font-weight: 600;
+  }
+}
+
 // Code blocks
 pre {
   background-color: $dark-bg;
@@ -234,11 +305,57 @@ pre {
   padding: 1rem;
   overflow: auto;
   margin: 1rem 0;
+  
+  code {
+    color: #e6edf3; // Light gray for code text
+    display: block;
+    line-height: 1.5;
+  }
 }
 
 code {
   font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
   font-size: 0.9rem;
+}
+
+// Inline code
+p code, li code, td code {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  padding: 0.2rem 0.4rem;
+  color: $primary-dark;
+  font-size: 0.85rem;
+}
+
+// Syntax highlighting colors (for Go code)
+.highlight {
+  .k, .kd, .kn {  // Keywords
+    color: #ff7b72;
+  }
+  
+  .s, .s1, .s2 {  // Strings
+    color: #a5d6ff;
+  }
+  
+  .c, .c1, .cm {  // Comments
+    color: #8b949e;
+  }
+  
+  .o, .p {  // Operators and punctuation
+    color: #e6edf3;
+  }
+  
+  .nx, .na {  // Names
+    color: #d2a8ff;
+  }
+  
+  .nb, .nc, .nf {  // Built-ins, classes, functions
+    color: #7ee787;
+  }
+  
+  .mi, .mf {  // Numbers
+    color: #f2cc60;
+  }
 }
 
 // Terminal display
