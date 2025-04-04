@@ -3,15 +3,15 @@
 
 /* 
  * GoEcosystem Documentation - Main Stylesheet
- * Exactly matching the Go Web Scraper API documentation style
+ * Matching the Go Web Scraper site style
  */
 
 /* Base Variables */
 :root {
   /* Colors */
-  --primary-color: #00ADD8;       /* Go blue - bright cyan blue */
-  --primary-light: #5DC9E2;
-  --primary-dark: #0092B8;
+  --primary-color: #00A4D8;       /* Go Web Scraper cyan */
+  --primary-light: #00D7F7;
+  --primary-dark: #0097C6;
   --dark-color: #0D1117;          /* Dark header color */
   --light-color: #F8F9FA;
   --gray-100: #F8F9FA;
@@ -65,21 +65,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 1.75rem;
+  font-size: 2rem;
   margin-top: 0;
   padding-bottom: 0.5rem;
-  border-bottom: 0;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   margin-top: 2rem;
   padding-bottom: 0.5rem;
-  border-bottom: 0;
+  border-bottom: 1px solid var(--gray-300);
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin-top: 1.5rem;
 }
 
@@ -89,12 +88,12 @@ p {
 
 /* Container */
 .container {
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-/* Header - exactly matching the screenshot */
+/* Header - exactly matching Go Web Scraper */
 .site-header {
   background-color: var(--dark-color);
   padding: 0.5rem 0;
@@ -131,27 +130,137 @@ p {
   text-decoration: none;
 }
 
-/* Blue header banner is removed as it's not in the screenshot */
-
-/* API Content */
-.api-content {
-  margin: 1.5rem 0 3rem 0;
+/* Hero Banner - exactly matching Go Web Scraper */
+.hero-banner {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 3rem 0;
+  text-align: center;
 }
 
-.api-content h2 {
-  background-color: white;
-  padding: 0.5rem 0;
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-  border-bottom: 1px solid var(--gray-300);
-}
-
-.api-content p {
+.hero-banner h1 {
+  color: white;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 
-/* Table Styling */
+.hero-banner p {
+  color: white;
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.hero-buttons {
+  margin-top: 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-outline {
+  color: white;
+  border: 2px solid white;
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+}
+
+/* Section styling */
+.section {
+  padding: 3rem 0;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Card layout - matching Go Web Scraper */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-description {
+  color: var(--gray-700);
+  margin-bottom: 1rem;
+}
+
+.card-link {
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+/* Feature list - like Go Web Scraper */
+.feature-list {
+  margin: 2rem 0;
+}
+
+.feature-item {
+  display: flex;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-right: 1rem;
+  color: var(--primary-color);
+}
+
+.feature-content {
+  flex-grow: 1;
+}
+
+.feature-title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.feature-description {
+  color: var(--gray-700);
+}
+
+/* Tables */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -176,12 +285,12 @@ tr:nth-child(even) {
   background-color: var(--gray-100);
 }
 
-/* Code blocks - exactly matching screenshot */
+/* Code blocks */
 pre {
   background-color: var(--dark-color);
   color: var(--gray-200);
   padding: 1rem;
-  border-radius: 0; /* No border radius in the screenshot */
+  border-radius: 5px;
   overflow-x: auto;
   margin: 0 0 1.5rem 0;
   width: 100%;
@@ -201,11 +310,41 @@ p code, li code, td code {
   color: var(--primary-dark);
 }
 
+/* Getting Started section - like Go Web Scraper */
+.getting-started {
+  background-color: var(--gray-100);
+  padding: 3rem 0;
+  margin: 3rem 0 0 0;
+}
+
+.getting-started h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.terminal {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  padding: 1.5rem;
+  border-radius: 6px;
+  margin: 0 auto;
+  max-width: 800px;
+  font-family: var(--font-family-mono);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+.terminal-line {
+  margin-bottom: 0.5rem;
+}
+
 /* Footer */
 .site-footer {
   background-color: var(--gray-100);
   padding: 2rem 0;
   border-top: 1px solid var(--gray-200);
+  margin-top: 3rem;
 }
 
 .footer-content {
@@ -243,6 +382,11 @@ p code, li code, td code {
   font-size: 0.9rem;
 }
 
+/* API Documentation styling */
+.api-content {
+  margin: 2rem 0;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .site-nav ul {
@@ -252,6 +396,10 @@ p code, li code, td code {
   
   .site-nav li {
     margin: 0.5rem 0.75rem;
+  }
+  
+  .card-grid {
+    grid-template-columns: 1fr;
   }
   
   .footer-content {

@@ -34,6 +34,18 @@
         </div>
     </header>
     
+    {% if page.url == "/" %}
+    <div class="hero-banner">
+        <div class="container">
+            <h1 class="hero-title">Go Cheatsheets</h1>
+            <p class="hero-description">A comprehensive reference guide for Go programming language syntax, standard library usage, and best practices.</p>
+            <div class="hero-buttons">
+                <a href="https://github.com/GoEcosystem/go-cheatsheets" class="btn btn-outline">View on GitHub</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
     {{ content }}
 
     <footer class="site-footer">
