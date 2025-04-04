@@ -50,11 +50,11 @@
     </section>
     {% else %}
     {% if page.header != false %}
-    <section class="page-header" style="background-color: var(--primary-color); color: white; padding: 2rem 0;">
+    <section class="page-header" style="background-image: linear-gradient(to bottom, #3498db, #2ecc71);">
         <div class="container">
-            <h1 style="color: white; margin-bottom: 0.5rem;">{{ page.title }}</h1>
+            <h1 style="color: white;">{{ page.title }}</h1>
             {% if page.description %}
-            <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 0;">{{ page.description }}</p>
+            <p style="color: white;">{{ page.description }}</p>
             {% endif %}
         </div>
     </section>
