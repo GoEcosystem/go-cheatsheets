@@ -225,6 +225,7 @@ code {
 .site-content {
   padding: 2rem 0;
   min-height: calc(100vh - 250px);
+  margin-top: -2rem;
 }
 
 .page-header {
@@ -285,6 +286,116 @@ code {
   font-size: 0.9rem;
 }
 
+/* Homepage specific styling */
+.hero-section {
+  text-align: center;
+  padding: 3rem 0;
+  background-color: var(--primary-color);
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.hero-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid white;
+  margin-bottom: 1rem;
+}
+
+.hero-tagline {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: white;
+  color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--gray-100);
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+}
+
+.cheatsheet-section {
+  margin: 3rem 0;
+}
+
+.cheatsheet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.cheatsheet-card {
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cheatsheet-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cheatsheet-card h3 {
+  background-color: var(--primary-color);
+  color: white;
+  margin: 0;
+  padding: 1rem;
+  font-size: 1.25rem;
+}
+
+.cheatsheet-card-content {
+  padding: 1rem;
+  min-height: 180px;
+}
+
+.cheatsheet-card-content ul {
+  margin-top: 1rem;
+}
+
+.cheatsheet-card-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--gray-200);
+  text-align: center;
+}
+
+/* Content sections */
+.content-section {
+  margin: 2.5rem 0;
+}
+
 /* Responsive adjustments */
 @media (max-width: 992px) {
   .container {
@@ -328,5 +439,21 @@ code {
   .footer-col {
     width: 100%;
     padding-right: 0;
+  }
+  
+  .cheatsheet-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+    margin-bottom: 0.5rem;
   }
 }
