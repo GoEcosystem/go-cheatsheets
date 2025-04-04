@@ -1,0 +1,294 @@
+---
+---
+
+/* Go Cheatsheets - Styling to exactly match Go Web Scraper API */
+
+/* Define color variables - exact match to Go Web Scraper */
+$primary-color: #00B7D6;
+$primary-light: #00C4E6;
+$primary-dark: #0099B1;
+$dark-bg: #0D1117;
+$light-bg: #F8F9FA;
+$text-color: #212529;
+
+@import "jekyll-theme-cayman";
+
+/* Override header and page-header styling */
+.page-header {
+  background-color: $primary-color;
+  background-image: none !important;
+  padding: 2rem 1rem;
+  
+  h1, .project-name {
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+  
+  h2, .project-tagline {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+  }
+}
+
+/* Main Content */
+.main-content {
+  h1, h2, h3, h4, h5, h6 {
+    color: $text-color;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  h1, h2 {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 0.3rem;
+  }
+  
+  h3 {
+    color: $primary-color;
+  }
+  
+  a {
+    color: $primary-color;
+    
+    &:hover {
+      color: $primary-dark;
+      text-decoration: underline;
+    }
+  }
+  
+  /* Code Styling - exactly like Go Web Scraper API */
+  pre {
+    background-color: $dark-bg;
+    border-radius: 6px;
+    padding: 1rem;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    overflow: auto;
+    margin-bottom: 1.5rem;
+    
+    code {
+      color: #e6edf3;
+      background-color: transparent;
+      padding: 0;
+      white-space: pre;
+      display: block;
+    }
+  }
+  
+  code {
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    color: $primary-dark;
+  }
+  
+  /* Table Styling - exactly like in Web Scraper API */
+  table {
+    width: 100%;
+    margin: 1.5rem 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+    
+    th {
+      background-color: $light-bg;
+      color: $text-color;
+      font-weight: 600;
+      text-align: left;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #dee2e6;
+    }
+    
+    td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #dee2e6;
+      
+      &:first-child {
+        font-weight: 500;
+      }
+      
+      a {
+        color: $primary-color;
+      }
+    }
+    
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+  
+  /* List Styling */
+  ul, ol {
+    padding-left: 2rem;
+    margin-bottom: 1.5rem;
+    
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  /* Feature Icons - exactly like Go Web Scraper */
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    
+    .feature-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      margin-right: 0.75rem;
+      color: $primary-color;
+    }
+    
+    .feature-content {
+      flex-grow: 1;
+      
+      h4 {
+        margin-top: 0;
+        margin-bottom: 0.25rem;
+        color: $text-color;
+        font-weight: 600;
+      }
+      
+      p {
+        color: #6c757d;
+        margin-bottom: 0;
+        font-size: 0.95rem;
+      }
+    }
+  }
+  
+  /* Card Styling - like Web Scraper */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-content {
+      padding: 1.5rem;
+      
+      h3 {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        color: $primary-color;
+        font-size: 1.25rem;
+      }
+      
+      p {
+        color: #6c757d;
+        margin-bottom: 1.25rem;
+        font-size: 0.9rem;
+      }
+      
+      .card-link {
+        display: inline-block;
+        color: $primary-color;
+        font-weight: 500;
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
+  /* Terminal Display */
+  .terminal {
+    background-color: $dark-bg;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    font-size: 0.9rem;
+    color: #e6edf3;
+    line-height: 1.5;
+    
+    .command {
+      color: #76e199;
+      margin-bottom: 0.5rem;
+      
+      &:before {
+        content: "$ ";
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+/* Footer Styling */
+.site-footer {
+  padding: 2rem 0;
+  background-color: $light-bg;
+  border-top: 1px solid #e9ecef;
+  margin-top: 2rem;
+  
+  .site-footer-owner {
+    font-weight: 600;
+  }
+  
+  .site-footer-credits {
+    color: #6c757d;
+    font-size: 0.9rem;
+  }
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 42em) {
+  .page-header {
+    padding: 1.5rem 1rem;
+    
+    h1, .project-name {
+      font-size: 2rem;
+    }
+    
+    h2, .project-tagline {
+      font-size: 1.1rem;
+    }
+  }
+  
+  .main-content {
+    padding: 2rem 1rem;
+    
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+/* Syntax Highlighting - exactly matching Go Web Scraper */
+.highlight {
+  .k, .kd, .kn, .kp, .kr, .kt { color: #ff7b72; } /* Keyword */
+  .s, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx { color: #a5d6ff; } /* String */
+  .na, .nc, .nd, .ne, .nf, .nx { color: #d2a8ff; } /* Names */
+  .nb { color: #7ee787; } /* Built-in */
+  .c, .c1, .cm, .cp, .cs { color: #8b949e; } /* Comment */
+  .mi, .mf, .mh, .mo { color: #f2cc60; } /* Numbers */
+  .nt, .nl { color: #ff7b72; } /* Tags */
+  .o, .ow { color: #ff7b72; } /* Operators */
+  .p, .pi { color: #e6edf3; } /* Punctuation */
+  .gd { color: #ffa198; background-color: rgba(255, 129, 130, 0.15); } /* Deleted */
+  .gi { color: #7ee787; background-color: rgba(56, 139, 95, 0.15); } /* Inserted */
+}

@@ -1,6 +1,6 @@
 # Site settings
 title: Go Cheatsheets
-description: Quick reference guides for Go programming language
+description: A comprehensive reference guide for Go programming language based on Go 1.24.1 documentation
 baseurl: "/go-cheatsheets"
 url: "https://goecosystem.github.io"
 repository: GoEcosystem/go-cheatsheets
@@ -10,6 +10,27 @@ markdown: kramdown
 highlighter: rouge
 permalink: pretty
 
+# Custom variables
+github_username: GoEcosystem
+github_repo: go-cheatsheets
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: Basics
+    url: /basics/
+  - title: Advanced
+    url: /advanced/
+  - title: Concurrency
+    url: /concurrency/
+  - title: Standard Library
+    url: /standard-library/
+  - title: Tooling
+    url: /tooling/
+  - title: GitHub
+    url: https://github.com/GoEcosystem/go-cheatsheets
+
 # Jekyll settings
 github:
   is_project_page: true
@@ -18,12 +39,22 @@ github:
   owner_name: GoEcosystem
   owner_url: https://github.com/GoEcosystem
 
-# Theme and plugins
-theme: jekyll-theme-cayman
+# Jekyll plugins
 plugins:
   - jekyll-seo-tag
   - jekyll-relative-links
   - jekyll-github-metadata
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git
+  - README.md
+  - LICENSE
+  - CNAME
 
 # Enable GitHub Pages to render Markdown files
 relative_links:

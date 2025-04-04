@@ -7,13 +7,13 @@
     <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ '/assets/images/mascot/gopher_avatar.jpg' | relative_url }}">
+    <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
     
     <!-- SEO -->
-    <meta name="keywords" content="Go, Cheatsheets, Documentation, GoEcosystem">
+    <meta name="keywords" content="Go, Cheatsheets, Documentation, API, GoEcosystem">
     <meta name="author" content="GoEcosystem">
     {% seo %}
 </head>
@@ -33,28 +33,35 @@
             </nav>
         </div>
     </header>
-    
-    {% if page.url == "/" %}
-    <div class="hero-banner">
+
+    {% if page.hero %}
+    <section class="hero">
         <div class="container">
-            <h1>Go Cheatsheets</h1>
-            <p>A comprehensive reference guide for Go programming language based on Go 1.24.1 documentation</p>
+            <h1>{{ page.hero.title }}</h1>
+            <p>{{ page.hero.description }}</p>
+            {% if page.hero.buttons %}
             <div class="hero-buttons">
-                <a href="https://github.com/GoEcosystem/go-cheatsheets" class="btn btn-outline">View on GitHub</a>
-                <a href="{{ '/basics/' | relative_url }}" class="btn btn-outline">Browse Cheatsheets</a>
+                {% for button in page.hero.buttons %}
+                <a href="{{ button.url | relative_url }}" class="btn btn-{{ button.type }}">{{ button.text }}</a>
+                {% endfor %}
             </div>
+            {% endif %}
         </div>
-    </div>
+    </section>
     {% else %}
-    <div class="page-header">
+    {% if page.header != false %}
+    <section class="page-header" style="background-color: var(--primary-color); color: white; padding: 2rem 0;">
         <div class="container">
-            <h1>{{ page.title }}</h1>
-            {% if page.description %}<p class="page-description">{{ page.description }}</p>{% endif %}
+            <h1 style="color: white; margin-bottom: 0.5rem;">{{ page.title }}</h1>
+            {% if page.description %}
+            <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 0;">{{ page.description }}</p>
+            {% endif %}
         </div>
-    </div>
+    </section>
     {% endif %}
-    
-    <main class="content">
+    {% endif %}
+
+    <main class="main-content">
         <div class="container">
             {{ content }}
         </div>
@@ -65,7 +72,7 @@
             <div class="footer-content">
                 <div class="footer-col">
                     <h3>Go Cheatsheets</h3>
-                    <p>Quick reference guides for Go programming language syntax and patterns, based on Go 1.24.1 documentation.</p>
+                    <p>A comprehensive reference guide for Go programming language based on Go 1.24.1 documentation.</p>
                 </div>
                 <div class="footer-col">
                     <h3>Resources</h3>
@@ -78,9 +85,9 @@
                 <div class="footer-col">
                     <h3>Links</h3>
                     <ul>
-                        <li><a href="https://github.com/GoEcosystem/go-cheatsheets">GitHub</a></li>
-                        <li><a href="https://goecosystem.github.io">GoEcosystem</a></li>
+                        <li><a href="https://github.com/GoEcosystem">GitHub</a></li>
                         <li><a href="https://go.dev">Go Website</a></li>
+                        <li><a href="https://pkg.go.dev">Go Packages</a></li>
                     </ul>
                 </div>
             </div>
