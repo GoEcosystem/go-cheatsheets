@@ -1,294 +1,558 @@
----
----
+/* 
+ * GoEcosystem Documentation - Main Stylesheet
+ * This file contains the shared styles for all Go Cheatsheets pages
+ */
 
-/* Go Cheatsheets - Styling to exactly match Go Web Scraper API */
-
-/* Define color variables - exact match to Go Web Scraper */
-$primary-color: #00B7D6;
-$primary-light: #00C4E6;
-$primary-dark: #0099B1;
-$dark-bg: #0D1117;
-$light-bg: #F8F9FA;
-$text-color: #212529;
-
-@import "jekyll-theme-cayman";
-
-/* Override header and page-header styling */
-.page-header {
-  background-color: $primary-color;
-  background-image: none !important;
-  padding: 2rem 1rem;
+/* Base Variables */
+:root {
+  /* Colors */
+  --primary-color: #00ADD8;       /* Go blue */
+  --primary-light: #5DC9E2;
+  --primary-dark: #0092B8;
+  --secondary-color: #FFDD57;     /* Go yellow */
+  --dark-color: #0D1117;
+  --light-color: #F8F9FA;
+  --gray-100: #F8F9FA;
+  --gray-200: #E9ECEF;
+  --gray-300: #DEE2E6;
+  --gray-400: #CED4DA;
+  --gray-500: #ADB5BD;
+  --gray-600: #6C757D;
+  --gray-700: #495057;
+  --gray-800: #343A40;
+  --gray-900: #212529;
   
-  h1, .project-name {
-    font-size: 2.5rem;
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-  }
+  /* Typography */
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
   
-  h2, .project-tagline {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    opacity: 0.9;
-  }
+  /* Spacing */
+  --spacing-unit: 0.25rem;
+  --container-max-width: 1140px;
+  --container-padding: 1rem;
+}
+
+/* Reset & Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  line-height: 1.6;
+  color: var(--gray-800);
+  background-color: var(--light-color);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--gray-900);
+  line-height: 1.3;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-top: 2.5rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+ul, ol {
+  margin: 0 0 1.5rem 1.25rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+code {
+  font-family: var(--font-family-mono);
+  background-color: var(--gray-100);
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  color: var(--gray-800);
+}
+
+pre {
+  background-color: var(--dark-color);
+  color: var(--gray-200);
+  padding: 1rem;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+blockquote {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 1rem;
+  color: var(--gray-700);
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--gray-200);
+  margin: 2rem 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--gray-300);
+}
+
+th {
+  background-color: var(--gray-100);
+  font-weight: 600;
+  color: var(--gray-800);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Layout */
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+/* Header */
+.site-header {
+  background-color: var(--dark-color);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.logo-text {
+  margin-left: 0.5rem;
+}
+
+.site-nav ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav li {
+  margin: 0 0 0 1.5rem;
+}
+
+.site-nav a {
+  color: var(--gray-400);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.site-nav a:hover, .site-nav a.active {
+  color: white;
+}
+
+/* Hero Section */
+.hero {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
 /* Main Content */
 .main-content {
-  h1, h2, h3, h4, h5, h6 {
-    color: $text-color;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  h1, h2 {
-    border-bottom: 1px solid #e9ecef;
-    padding-bottom: 0.3rem;
-  }
-  
-  h3 {
-    color: $primary-color;
-  }
-  
-  a {
-    color: $primary-color;
-    
-    &:hover {
-      color: $primary-dark;
-      text-decoration: underline;
-    }
-  }
-  
-  /* Code Styling - exactly like Go Web Scraper API */
-  pre {
-    background-color: $dark-bg;
-    border-radius: 6px;
-    padding: 1rem;
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-    font-size: 0.9rem;
-    line-height: 1.45;
-    overflow: auto;
-    margin-bottom: 1.5rem;
-    
-    code {
-      color: #e6edf3;
-      background-color: transparent;
-      padding: 0;
-      white-space: pre;
-      display: block;
-    }
-  }
-  
-  code {
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-    background-color: rgba(0, 0, 0, 0.05);
-    padding: 0.2rem 0.4rem;
-    border-radius: 3px;
-    font-size: 0.85rem;
-    color: $primary-dark;
-  }
-  
-  /* Table Styling - exactly like in Web Scraper API */
-  table {
-    width: 100%;
-    margin: 1.5rem 0;
-    border-collapse: collapse;
-    border-spacing: 0;
-    background-color: white;
-    border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
-    
-    th {
-      background-color: $light-bg;
-      color: $text-color;
-      font-weight: 600;
-      text-align: left;
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid #dee2e6;
-    }
-    
-    td {
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid #dee2e6;
-      
-      &:first-child {
-        font-weight: 500;
-      }
-      
-      a {
-        color: $primary-color;
-      }
-    }
-    
-    tr:last-child td {
-      border-bottom: none;
-    }
-  }
-  
-  /* List Styling */
-  ul, ol {
-    padding-left: 2rem;
-    margin-bottom: 1.5rem;
-    
-    li {
-      margin-bottom: 0.5rem;
-    }
-  }
-  
-  /* Feature Icons - exactly like Go Web Scraper */
-  .feature-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 1.5rem;
-    
-    .feature-icon {
-      flex-shrink: 0;
-      width: 24px;
-      height: 24px;
-      margin-right: 0.75rem;
-      color: $primary-color;
-    }
-    
-    .feature-content {
-      flex-grow: 1;
-      
-      h4 {
-        margin-top: 0;
-        margin-bottom: 0.25rem;
-        color: $text-color;
-        font-weight: 600;
-      }
-      
-      p {
-        color: #6c757d;
-        margin-bottom: 0;
-        font-size: 0.95rem;
-      }
-    }
-  }
-  
-  /* Card Styling - like Web Scraper */
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
-  }
-  
-  .card {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    }
-    
-    .card-content {
-      padding: 1.5rem;
-      
-      h3 {
-        margin-top: 0;
-        margin-bottom: 0.75rem;
-        color: $primary-color;
-        font-size: 1.25rem;
-      }
-      
-      p {
-        color: #6c757d;
-        margin-bottom: 1.25rem;
-        font-size: 0.9rem;
-      }
-      
-      .card-link {
-        display: inline-block;
-        color: $primary-color;
-        font-weight: 500;
-        text-decoration: none;
-        
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-  
-  /* Terminal Display */
-  .terminal {
-    background-color: $dark-bg;
-    border-radius: 6px;
-    padding: 1rem;
-    margin: 1.5rem 0;
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-    font-size: 0.9rem;
-    color: #e6edf3;
-    line-height: 1.5;
-    
-    .command {
-      color: #76e199;
-      margin-bottom: 0.5rem;
-      
-      &:before {
-        content: "$ ";
-        opacity: 0.7;
-      }
-    }
-  }
+  padding: 3rem 0;
 }
 
-/* Footer Styling */
-.site-footer {
-  padding: 2rem 0;
-  background-color: $light-bg;
-  border-top: 1px solid #e9ecef;
-  margin-top: 2rem;
-  
-  .site-footer-owner {
-    font-weight: 600;
-  }
-  
-  .site-footer-credits {
-    color: #6c757d;
-    font-size: 0.9rem;
-  }
+/* Page Header */
+.page-header {
+  margin-bottom: 2rem;
 }
+
+.page-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.page-description {
+  font-size: 1.1rem;
+  color: var(--gray-600);
+  margin-bottom: 2rem;
+}
+
+/* Home Sections */
+.section {
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  color: var(--gray-900);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.section-description {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+  color: var(--gray-600);
+}
+
+/* Feature Cards */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.feature-icon {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.feature-content h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+}
+
+.feature-content p {
+  margin: 0;
+  color: var(--gray-600);
+}
+
+/* Card Layout */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.card-icon {
+  color: var(--primary-color);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  color: white;
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--gray-100);
+  color: var(--primary-dark);
+  text-decoration: none;
+}
+
+/* Code Blocks */
+.code-block {
+  background-color: var(--dark-color);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.code-header {
+  background-color: #1A1E22;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #2D333B;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.code-title {
+  color: white;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.code-content {
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.code-content pre {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+.terminal {
+  background-color: var(--dark-color);
+  color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  font-family: var(--font-family-mono);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+.terminal .command {
+  color: #ADB5BD;
+}
+
+.terminal .command::before {
+  content: "$ ";
+  color: var(--primary-color);
+}
+
+/* Footer */
+.site-footer {
+  background-color: var(--gray-900);
+  color: var(--gray-400);
+  padding: 3rem 0 1.5rem;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-col h3 {
+  color: white;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.footer-col ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-col li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-col a {
+  color: var(--gray-400);
+}
+
+.footer-col a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--gray-800);
+}
+
+/* Syntax Highlighting */
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt { color: #ff7b72; } /* Keyword */
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx { color: #a5d6ff; } /* String */
+.highlight .na, .highlight .nc, .highlight .nd, .highlight .ne, .highlight .nf, .highlight .nx { color: #d2a8ff; } /* Names */
+.highlight .nb { color: #7ee787; } /* Built-in */
+.highlight .c, .highlight .c1, .highlight .cm, .highlight .cp, .highlight .cs { color: #8b949e; } /* Comment */
+.highlight .mi, .highlight .mf, .highlight .mh, .highlight .mo { color: #f2cc60; } /* Numbers */
+.highlight .nt, .highlight .nl { color: #ff7b72; } /* Tags */
+.highlight .o, .highlight .ow { color: #ff7b72; } /* Operators */
+.highlight .p, .highlight .pi { color: #e6edf3; } /* Punctuation */
+.highlight .gd { color: #ffa198; background-color: rgba(255, 129, 130, 0.15); } /* Deleted */
+.highlight .gi { color: #7ee787; background-color: rgba(56, 139, 95, 0.15); } /* Inserted */
 
 /* Responsive Adjustments */
-@media screen and (max-width: 42em) {
-  .page-header {
-    padding: 1.5rem 1rem;
-    
-    h1, .project-name {
-      font-size: 2rem;
-    }
-    
-    h2, .project-tagline {
-      font-size: 1.1rem;
-    }
+@media (max-width: 992px) {
+  .container {
+    padding: 0 1.5rem;
   }
   
-  .main-content {
-    padding: 2rem 1rem;
-    
-    .card-grid {
-      grid-template-columns: 1fr;
-    }
+  .hero {
+    padding: 3rem 0;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
   }
 }
 
-/* Syntax Highlighting - exactly matching Go Web Scraper */
-.highlight {
-  .k, .kd, .kn, .kp, .kr, .kt { color: #ff7b72; } /* Keyword */
-  .s, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx { color: #a5d6ff; } /* String */
-  .na, .nc, .nd, .ne, .nf, .nx { color: #d2a8ff; } /* Names */
-  .nb { color: #7ee787; } /* Built-in */
-  .c, .c1, .cm, .cp, .cs { color: #8b949e; } /* Comment */
-  .mi, .mf, .mh, .mo { color: #f2cc60; } /* Numbers */
-  .nt, .nl { color: #ff7b72; } /* Tags */
-  .o, .ow { color: #ff7b72; } /* Operators */
-  .p, .pi { color: #e6edf3; } /* Punctuation */
-  .gd { color: #ffa198; background-color: rgba(255, 129, 130, 0.15); } /* Deleted */
-  .gi { color: #7ee787; background-color: rgba(56, 139, 95, 0.15); } /* Inserted */
+@media (max-width: 768px) {
+  .site-header .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .site-nav {
+    margin-top: 1rem;
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .site-nav ul {
+    width: max-content;
+  }
+  
+  .hero {
+    padding: 2rem 0;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 576px) {
+  .cards, .features {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
 }

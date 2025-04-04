@@ -9,6 +9,7 @@ repository: GoEcosystem/go-cheatsheets
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
+theme: jekyll-theme-cayman
 
 # Custom variables
 github_username: GoEcosystem
