@@ -19,11 +19,11 @@ Core syntax, variables, functions, and control flow structures in Go.
   </thead>
   <tbody>
     <tr>
-      <td><a href="{{ '/go-cheatsheets/basics/basic-syntax' | relative_url }}">Basic Syntax</a></td>
+      <td><a href="{{ '/basics/basic-syntax' | relative_url }}">Basic Syntax</a></td>
       <td>Variables, functions, control flow, and basic syntax in Go.</td>
     </tr>
     <tr>
-      <td><a href="{{ '/go-cheatsheets/basics/data-structures' | relative_url }}">Data Structures</a></td>
+      <td><a href="{{ '/basics/data-structures' | relative_url }}">Data Structures</a></td>
       <td>Arrays, slices, maps, and structs in Go.</td>
     </tr>
   </tbody>

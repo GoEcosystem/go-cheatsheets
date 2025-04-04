@@ -19,15 +19,15 @@ Advanced Go concepts including interfaces, reflection, and error handling.
   </thead>
   <tbody>
     <tr>
-      <td><a href="{{ '/go-cheatsheets/advanced/interfaces' | relative_url }}">Interfaces</a></td>
+      <td><a href="{{ '/advanced/interfaces' | relative_url }}">Interfaces</a></td>
       <td>Interface definitions, type assertions, and empty interfaces.</td>
     </tr>
     <tr>
-      <td><a href="{{ '/go-cheatsheets/advanced/error-handling' | relative_url }}">Error Handling</a></td>
+      <td><a href="{{ '/advanced/error-handling' | relative_url }}">Error Handling</a></td>
       <td>Error handling patterns, custom errors, and error wrapping.</td>
     </tr>
     <tr>
-      <td><a href="{{ '/go-cheatsheets/advanced/generics' | relative_url }}">Generics</a></td>
+      <td><a href="{{ '/advanced/generics' | relative_url }}">Generics</a></td>
       <td>Type parameters, constraints, and generic data structures.</td>
     </tr>
   </tbody>

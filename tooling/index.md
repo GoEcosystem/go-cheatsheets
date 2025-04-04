@@ -19,11 +19,11 @@ Go tools for testing, building, and managing Go applications in Go 1.24.1.
   </thead>
   <tbody>
     <tr>
-      <td><a href="{{ '/go-cheatsheets/tooling/modules' | relative_url }}">Modules</a></td>
+      <td><a href="{{ '/tooling/modules' | relative_url }}">Modules</a></td>
       <td>Go modules for dependency management, versioning, and project organization.</td>
     </tr>
     <tr>
-      <td><a href="{{ '/go-cheatsheets/tooling/testing' | relative_url }}">Testing</a></td>
+      <td><a href="{{ '/tooling/testing' | relative_url }}">Testing</a></td>
       <td>Unit testing, benchmarking, and test utilities in Go.</td>
     </tr>
   </tbody>
