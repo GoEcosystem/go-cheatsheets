@@ -195,6 +195,13 @@ th {
   text-decoration: none;
 }
 
+.logo-square {
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  margin-right: 8px;
+}
+
 .logo-text {
   margin-left: 0.5rem;
 }
@@ -222,7 +229,7 @@ th {
 
 /* Content */
 .site-content {
-  padding: 3rem 0;
+  padding: 0;
   min-height: calc(100vh - 350px); /* Ensure footer stays at bottom */
 }
 
@@ -311,24 +318,25 @@ th {
 }
 
 .btn-primary {
-  background-color: var(--primary-color);
-  color: white;
+  background-color: white;
+  color: var(--primary-color);
 }
 
 .btn-primary:hover {
-  background-color: var(--primary-dark);
-  color: white;
+  background-color: var(--gray-100);
+  color: var(--primary-color);
   text-decoration: none;
 }
 
 .btn-secondary {
-  background-color: var(--gray-200);
-  color: var(--gray-800);
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
 }
 
 .btn-secondary:hover {
-  background-color: var(--gray-300);
-  color: var(--gray-900);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
   text-decoration: none;
 }
 
@@ -654,7 +662,6 @@ th {
   color: white;
   padding: 4rem 0;
   text-align: center;
-  margin-bottom: 3rem;
 }
 
 .hero h1 {
@@ -674,6 +681,26 @@ th {
   display: flex;
   justify-content: center;
   gap: 1rem;
+}
+
+/* Section titles */
+.section-title {
+  position: relative;
+  color: var(--gray-900);
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 3px;
+  background-color: var(--primary-color);
 }
 
 /* Terminal styling */
