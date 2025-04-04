@@ -13,7 +13,6 @@
     <link rel="icon" type="image/png" href="{{ '/assets/images/mascot/gopher_avatar.jpg' | relative_url }}">
     
     <!-- SEO -->
-    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     <meta name="keywords" content="Go, Cheatsheets, Documentation, GoEcosystem">
     <meta name="author" content="GoEcosystem">
     {% seo %}
@@ -21,34 +20,21 @@
 <body>
     <header class="site-header">
         <div class="container">
-            <a href="{{ '/' | relative_url }}" class="site-logo">
-                <img src="{{ '/assets/images/mascot/gopher_avatar.jpg' | relative_url }}" alt="Go Gopher" class="logo-image" width="40">
-                <span class="logo-text">{{ site.title }}</span>
-            </a>
             <nav class="site-nav">
                 <ul>
-                    {% for item in site.navigation %}
-                    <li><a href="{{ item.url | relative_url }}" {% if page.url == item.url %}class="active"{% endif %}>{{ item.title }}</a></li>
-                    {% endfor %}
+                    <li><a href="{{ '/' | relative_url }}">Home</a></li>
+                    <li><a href="{{ '/basics/' | relative_url }}">Basics</a></li>
+                    <li><a href="{{ '/advanced/' | relative_url }}">Advanced</a></li>
+                    <li><a href="{{ '/concurrency/' | relative_url }}">Concurrency</a></li>
+                    <li><a href="{{ '/standard-library/' | relative_url }}">Standard Library</a></li>
+                    <li><a href="{{ '/tooling/' | relative_url }}">Tooling</a></li>
+                    <li><a href="https://github.com/GoEcosystem/go-cheatsheets">GitHub</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-
-    <main class="site-content">
-        <div class="container">
-            {% if page.title %}
-            <div class="page-header">
-                <h1>{{ page.title }}</h1>
-                {% if page.description %}
-                <p class="page-description">{{ page.description }}</p>
-                {% endif %}
-            </div>
-            {% endif %}
-            
-            {{ content }}
-        </div>
-    </main>
+    
+    {{ content }}
 
     <footer class="site-footer">
         <div class="container">
