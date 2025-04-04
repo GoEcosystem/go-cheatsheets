@@ -20,36 +20,31 @@
 <body>
     <header class="site-header">
         <div class="container">
-            <a href="{{ '/' | relative_url }}" class="site-logo">
-                <span class="logo-text">Go Cheatsheets</span>
+            <a href="https://goecosystem.github.io" class="site-logo">
+                <img src="{{ '/assets/images/mascot/gopher_avatar.jpg' | relative_url }}" alt="GoEcosystem Logo" width="32" height="32">
+                <span class="logo-text">GoEcosystem</span>
             </a>
             <nav class="site-nav">
                 <ul>
-                    <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
-                    <li><a href="{{ '/basics/' | relative_url }}" {% if page.url contains '/basics/' %}class="active"{% endif %}>Basics</a></li>
-                    <li><a href="{{ '/advanced/' | relative_url }}" {% if page.url contains '/advanced/' %}class="active"{% endif %}>Advanced</a></li>
-                    <li><a href="{{ '/concurrency/' | relative_url }}" {% if page.url contains '/concurrency/' %}class="active"{% endif %}>Concurrency</a></li>
-                    <li><a href="{{ '/standard-library/' | relative_url }}" {% if page.url contains '/standard-library/' %}class="active"{% endif %}>Standard Library</a></li>
-                    <li><a href="{{ '/tooling/' | relative_url }}" {% if page.url contains '/tooling/' %}class="active"{% endif %}>Tooling</a></li>
-                    <li><a href="https://github.com/GoEcosystem/go-cheatsheets">GitHub</a></li>
+                    <li><a href="https://goecosystem.github.io" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
+                    <li><a href="https://goecosystem.github.io/#repositories" {% if page.url contains '/repositories/' %}class="active"{% endif %}>Repositories</a></li>
+                    <li><a href="https://goecosystem.github.io/documentation" {% if page.url contains '/documentation/' %}class="active"{% endif %}>Documentation</a></li>
+                    <li><a href="https://github.com/GoEcosystem">GitHub</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="site-content">
-        <div class="container">
-            {% if page.title and page.url != '/' %}
-            <div class="page-header">
-                <h1>{{ page.title }}</h1>
-                {% if page.description %}
-                <p class="page-description">{{ page.description }}</p>
-                {% endif %}
-            </div>
+        {% if page.title and page.url != '/' %}
+        <div class="page-header">
+            <h1>{{ page.title }}</h1>
+            {% if page.description %}
+            <p class="page-description">{{ page.description }}</p>
             {% endif %}
-            
-            {{ content }}
         </div>
+        {% endif %}
+        {{ content }}
     </main>
 
     <footer class="site-footer">
@@ -65,6 +60,8 @@
                         <li><a href="{{ '/basics/' | relative_url }}">Basics</a></li>
                         <li><a href="{{ '/advanced/' | relative_url }}">Advanced</a></li>
                         <li><a href="{{ '/concurrency/' | relative_url }}">Concurrency</a></li>
+                        <li><a href="{{ '/standard-library/' | relative_url }}">Standard Library</a></li>
+                        <li><a href="{{ '/tooling/' | relative_url }}">Tooling</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
