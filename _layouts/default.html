@@ -10,31 +10,28 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
+    <link rel="icon" type="image/png" href="{{ '/assets/images/mascot/gopher_avatar.jpg' | relative_url }}">
     
     <!-- SEO -->
     {% seo %}
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <a href="{{ '/' | relative_url }}" class="site-logo">
-                <img src="{{ '/assets/images/mascot/gopher_avatar.jpg' | relative_url }}" alt="Go Gopher" class="logo-image">
-                <span class="logo-text">{{ site.title }}</span>
-            </a>
+    <div class="wrapper">
+        <header>
+            <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+            
+            <img src="{{ '/assets/images/mascot/gopher_avatar.jpg' | relative_url }}" alt="Go Gopher" class="logo-image" width="100">
+            
+            <p>{{ site.description }}</p>
+            
             <nav class="site-nav">
-                <ul>
-                    {% for item in site.navigation %}
-                    <li><a href="{{ item.url | relative_url }}" {% if page.url == item.url %}class="active"{% endif %}>{{ item.title }}</a></li>
-                    {% endfor %}
-                </ul>
+                {% for item in site.navigation %}
+                <a href="{{ item.url | relative_url }}" {% if page.url == item.url %}class="active"{% endif %}>{{ item.title }}</a>
+                {% endfor %}
             </nav>
-        </div>
-    </header>
-
-    <main class="site-content">
-        {% if page.url != "/" %}
-        <div class="container">
+        </header>
+        
+        <section>
             {% if page.title %}
             <div class="page-header">
                 <h1>{{ page.title }}</h1>
@@ -43,42 +40,16 @@
                 {% endif %}
             </div>
             {% endif %}
-        </div>
-        {% endif %}
+            
+            {{ content }}
+        </section>
         
-        {{ content }}
-    </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <h3>Go Cheatsheets</h3>
-                    <p>Quick reference guides for Go programming language syntax and patterns.</p>
-                </div>
-                <div class="footer-col">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="{{ '/basics/' | relative_url }}">Basics</a></li>
-                        <li><a href="{{ '/advanced/' | relative_url }}">Advanced</a></li>
-                        <li><a href="{{ '/concurrency/' | relative_url }}">Concurrency</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Links</h3>
-                    <ul>
-                        <li><a href="https://github.com/GoEcosystem/go-cheatsheets">GitHub</a></li>
-                        <li><a href="https://goecosystem.github.io">GoEcosystem</a></li>
-                        <li><a href="https://go.dev">Go Website</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; {{ 'now' | date: "%Y" }} GoEcosystem. All repositories licensed under MIT License.</p>
-            </div>
-        </div>
-    </footer>
-
+        <footer>
+            <p>&copy; {{ 'now' | date: "%Y" }} GoEcosystem. All repositories licensed under MIT License.</p>
+            <p><small>Powered by <a href="https://pages.github.com">GitHub Pages</a></small></p>
+        </footer>
+    </div>
+    
     <!-- JavaScript -->
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
