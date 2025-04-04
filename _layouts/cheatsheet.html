@@ -1,10 +1,59 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ '/assets/images/mascot/gopher_avatar.jpg' | relative_url }}">
+    
+    <!-- SEO -->
+    <meta name="keywords" content="Go, Cheatsheets, Documentation, GoEcosystem">
+    <meta name="author" content="GoEcosystem">
+    {% seo %}
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="site-nav">
+                <ul>
+                    <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
+                    <li><a href="{{ '/basics/' | relative_url }}" {% if page.url contains '/basics/' %}class="active"{% endif %}>Basics</a></li>
+                    <li><a href="{{ '/advanced/' | relative_url }}" {% if page.url contains '/advanced/' %}class="active"{% endif %}>Advanced</a></li>
+                    <li><a href="{{ '/concurrency/' | relative_url }}" {% if page.url contains '/concurrency/' %}class="active"{% endif %}>Concurrency</a></li>
+                    <li><a href="{{ '/standard-library/' | relative_url }}" {% if page.url contains '/standard-library/' %}class="active"{% endif %}>Standard Library</a></li>
+                    <li><a href="{{ '/tooling/' | relative_url }}" {% if page.url contains '/tooling/' %}class="active"{% endif %}>Tooling</a></li>
+                    <li><a href="https://github.com/GoEcosystem/go-cheatsheets">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="page-header">
+        <div class="container">
+            <h1>{{ page.title }}</h1>
+            <p>{{ page.description }}</p>
+        </div>
+    </section>
+    
+    <main class="main-content">
+        <div class="container">
+            {{ content }}
+        </div>
+    </main>
 
-<div class="container">
-  <div class="api-content">
-    <h1>{{ page.title }}</h1>
-    {{ content }}
-  </div>
-</div>
+    <footer class="site-footer">
+        <div class="site-footer-owner">
+            <a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.
+        </div>
+        <div class="site-footer-credits">
+            &copy; {{ 'now' | date: "%Y" }} GoEcosystem. All repositories licensed under MIT License.
+        </div>
+    </footer>
+</body>
+</html>

@@ -16,7 +16,7 @@ $text-color: #212529;
 /* Override header and page-header styling */
 .page-header {
   background-color: $primary-color;
-  background-image: linear-gradient(120deg, $primary-color, $primary-color);
+  background-image: none !important;
   padding: 2rem 1rem;
   
   h1, .project-name {
@@ -58,14 +58,16 @@ $text-color: #212529;
     }
   }
   
-  /* Code Styling */
+  /* Code Styling - exactly like Go Web Scraper API */
   pre {
     background-color: $dark-bg;
     border-radius: 6px;
     padding: 1rem;
     font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
     font-size: 0.9rem;
+    line-height: 1.45;
     overflow: auto;
+    margin-bottom: 1.5rem;
     
     code {
       color: #e6edf3;
@@ -85,7 +87,7 @@ $text-color: #212529;
     color: $primary-dark;
   }
   
-  /* Table Styling */
+  /* Table Styling - exactly like in Web Scraper API */
   table {
     width: 100%;
     margin: 1.5rem 0;
@@ -93,7 +95,7 @@ $text-color: #212529;
     border-spacing: 0;
     background-color: white;
     border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
     
     th {
       background-color: $light-bg;
@@ -276,7 +278,7 @@ $text-color: #212529;
   }
 }
 
-/* Syntax Highlighting - matching Go Web Scraper */
+/* Syntax Highlighting - exactly matching Go Web Scraper */
 .highlight {
   .k, .kd, .kn, .kp, .kr, .kt { color: #ff7b72; } /* Keyword */
   .s, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx { color: #a5d6ff; } /* String */
@@ -287,4 +289,6 @@ $text-color: #212529;
   .nt, .nl { color: #ff7b72; } /* Tags */
   .o, .ow { color: #ff7b72; } /* Operators */
   .p, .pi { color: #e6edf3; } /* Punctuation */
+  .gd { color: #ffa198; background-color: rgba(255, 129, 130, 0.15); } /* Deleted */
+  .gi { color: #7ee787; background-color: rgba(56, 139, 95, 0.15); } /* Inserted */
 }
