@@ -1,340 +1,212 @@
 ---
-layout: default
+layout: cheatsheet
 title: Concurrency
-description: Goroutines, channels, and synchronization primitives in Go
-permalink: /concurrency/
+description: Goroutines, channels, select statements, and synchronization patterns
+permalink: /go-cheatsheets/concurrency/concurrency/
 ---
 
-# Go Concurrency Cheatsheet
-
-Go's concurrency model is based on goroutines and channels, inspired by Communicating Sequential Processes (CSP).
+# Go Concurrency
 
 ## Goroutines
-Lightweight threads managed by the Go runtime.
+
+Lightweight concurrent functions:
 
 ```go
-// Start a goroutine
+// Starting a goroutine
 go func() {
-    // code to run concurrently
+    // This function executes concurrently
     fmt.Println("Running in a goroutine")
 }()
 
-// Goroutine with function call
-go doSomething(arg1, arg2)
+// Goroutine with a function
+go myFunc(arg1, arg2)
 
-// Wait for goroutines to finish (simple approach)
-time.Sleep(time.Second)  // Not recommended for production
+// Simple example
+func main() {
+    go sayHello()
+    // Wait to prevent program from exiting before goroutine completes
+    time.Sleep(100 * time.Millisecond)
+}
 
-// Better approach with WaitGroup
-var wg sync.WaitGroup
-wg.Add(1)  // Add counter for one goroutine
-go func() {
-    defer wg.Done()  // Decrement counter when goroutine finishes
-    // code
-}()
-wg.Wait()  // Block until counter becomes zero
+func sayHello() {
+    fmt.Println("Hello from goroutine!")
+}
 ```
 
 ## Channels
-Typed conduits for communication between goroutines.
+
+Communication between goroutines:
 
 ```go
-// Create unbuffered channel
-ch := make(chan int)
+// Create a channel
+ch := make(chan int)      // Unbuffered channel
+ch := make(chan int, 10)  // Buffered channel with capacity 10
 
-// Create buffered channel with capacity 5
-bufCh := make(chan string, 5)
-
-// Send value to channel (blocks until received)
+// Send data to a channel (blocks if channel is full)
 ch <- 42
 
-// Receive value from channel (blocks until sent)
+// Receive data from a channel (blocks if channel is empty)
 value := <-ch
 
-// Non-blocking send with select
-select {
-case ch <- value:
-    // value sent
-default:
-    // would block, not sent
+// Check if receive was successful
+value, ok := <-ch
+if !ok {
+    // Channel is closed
 }
 
-// Non-blocking receive with select
-select {
-case value := <-ch:
-    // value received
-default:
-    // would block, no value available
-}
-
-// Close channel (sender should close)
+// Close a channel (sender only)
 close(ch)
 
-// Check if channel is closed while receiving
-value, ok := <-ch  // ok is false if channel is closed and empty
-
-// Range over channel (stops when channel is closed)
+// Range over channel values until closed
 for value := range ch {
-    // process value
+    fmt.Println(value)
 }
-
-// Directional channels (for function parameters)
-func send(ch chan<- int)    // can only send to channel
-func receive(ch <-chan int) // can only receive from channel
 ```
 
 ## Select Statement
-Waits on multiple channel operations.
+
+Handling multiple channel operations:
 
 ```go
+// Basic select statement
 select {
 case v1 := <-ch1:
-    // handle value from ch1
+    fmt.Println("Received from ch1:", v1)
 case v2 := <-ch2:
-    // handle value from ch2
-case ch3 <- value:
-    // value sent to ch3
+    fmt.Println("Received from ch2:", v2)
+case ch3 <- 23:
+    fmt.Println("Sent to ch3")
 case <-time.After(1 * time.Second):
-    // timeout after 1 second
+    fmt.Println("Timeout after 1 second")
 default:
-    // run if no other case is ready (non-blocking)
+    // Non-blocking case if no other case is ready
+    fmt.Println("No channel operation ready")
 }
 ```
 
-## Synchronization Primitives
+## Wait Groups
 
-### Mutex
-Mutual exclusion lock for protecting shared resources.
+Waiting for multiple goroutines:
 
 ```go
-var mu sync.Mutex
-var count int
+func main() {
+    var wg sync.WaitGroup
+    
+    // Add number of goroutines to wait for
+    wg.Add(2)
+    
+    go func() {
+        defer wg.Done() // Signal completion
+        time.Sleep(1 * time.Second)
+        fmt.Println("Goroutine 1 finished")
+    }()
+    
+    go func() {
+        defer wg.Done() // Signal completion
+        time.Sleep(2 * time.Second)
+        fmt.Println("Goroutine 2 finished")
+    }()
+    
+    // Wait for all goroutines to finish
+    wg.Wait()
+    fmt.Println("All goroutines completed")
+}
+```
 
-// Lock before accessing shared resource
-mu.Lock()
-count++
-mu.Unlock()
+## Mutex
 
-// Defer unlock (good practice)
+Protecting shared resources:
+
+```go
+var (
+    counter int
+    mu      sync.Mutex
+)
+
 func increment() {
-    mu.Lock()
-    defer mu.Unlock()
-    count++
-}
-```
-
-### RWMutex
-Reader/Writer mutual exclusion lock.
-
-```go
-var rwMu sync.RWMutex
-var data map[string]string
-
-// Multiple readers can acquire read lock
-func read(key string) string {
-    rwMu.RLock()
-    defer rwMu.RUnlock()
-    return data[key]
+    mu.Lock()       // Lock the mutex
+    defer mu.Unlock() // Ensure unlock happens
+    counter++
 }
 
-// Only one writer can acquire write lock
-func write(key, value string) {
-    rwMu.Lock()
-    defer rwMu.Unlock()
-    data[key] = value
+func main() {
+    // Start 1000 goroutines
+    var wg sync.WaitGroup
+    for i := 0; i < 1000; i++ {
+        wg.Add(1)
+        go func() {
+            defer wg.Done()
+            increment()
+        }()
+    }
+    wg.Wait()
+    fmt.Println("Counter:", counter) // 1000
 }
-```
-
-### Once
-Ensures a function is executed only once.
-
-```go
-var once sync.Once
-var instance *Singleton
-
-func GetInstance() *Singleton {
-    once.Do(func() {
-        instance = &Singleton{}
-    })
-    return instance
-}
-```
-
-### WaitGroup
-Waits for a collection of goroutines to finish.
-
-```go
-var wg sync.WaitGroup
-
-// Add number of goroutines to wait for
-wg.Add(3)
-
-for i := 0; i < 3; i++ {
-    go func(id int) {
-        defer wg.Done()  // Decrement counter when done
-        // Do work
-    }(i)
-}
-
-// Wait for all goroutines to finish
-wg.Wait()
-```
-
-### Cond
-Condition variable for goroutine waiting.
-
-```go
-var mu sync.Mutex
-cond := sync.NewCond(&mu)
-
-// Wait for condition
-mu.Lock()
-for !condition() {
-    cond.Wait()  // Atomically unlocks mu and blocks until Signal/Broadcast
-}
-// mu is locked again when Wait returns
-mu.Unlock()
-
-// Signal one waiting goroutine
-mu.Lock()
-// Change condition
-cond.Signal()
-mu.Unlock()
-
-// Signal all waiting goroutines
-mu.Lock()
-// Change condition
-cond.Broadcast()
-mu.Unlock()
 ```
 
 ## Context
-For cancellation, deadlines, and passing request-scoped values.
+
+Controlling goroutine lifecycles:
 
 ```go
-// Create context with cancellation
-ctx, cancel := context.WithCancel(context.Background())
-defer cancel()  // Cancel when we're done
-
-// Create context with timeout
-ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-defer cancel()
-
-// Create context with deadline
-ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(5*time.Second))
-defer cancel()
-
-// Create context with value
-ctx = context.WithValue(ctx, "key", "value")
-
-// Get value from context
-if value, ok := ctx.Value("key").(string); ok {
-    // Use value
+func main() {
+    // Create a context with timeout
+    ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+    defer cancel() // Always call cancel to release resources
+    
+    // Use context to coordinate goroutines
+    go worker(ctx)
+    
+    // Wait for context to be done
+    <-ctx.Done()
+    fmt.Println("Main:", ctx.Err())
 }
 
-// Check if context is done
-select {
-case <-ctx.Done():
-    // Context cancelled or timed out
-    err := ctx.Err()  // context.Canceled or context.DeadlineExceeded
-    return
-default:
-    // Continue work
+func worker(ctx context.Context) {
+    for {
+        select {
+        case <-ctx.Done():
+            fmt.Println("Worker: Stopping due to", ctx.Err())
+            return
+        default:
+            fmt.Println("Worker: Working...")
+            time.Sleep(500 * time.Millisecond)
+        }
+    }
 }
 ```
 
-## Common Concurrency Patterns
+## Patterns
 
-### Worker Pool
+Common concurrency patterns:
+
 ```go
-func worker(id int, jobs <-chan int, results chan<- int) {
-    for j := range jobs {
-        // Do work
-        results <- j * 2
-    }
-}
-
-// Create channels
-jobs := make(chan int, 100)
-results := make(chan int, 100)
-
-// Start workers
-for w := 1; w <= 3; w++ {
-    go worker(w, jobs, results)
-}
-
-// Send jobs
-for j := 1; j <= 9; j++ {
-    jobs <- j
-}
-close(jobs)
-
-// Collect results
-for a := 1; a <= 9; a++ {
-    <-results
-}
-```
-
-### Fan-out, Fan-in
-```go
-func fanOut(input <-chan int, n int) []<-chan int {
-    outputs := make([]<-chan int, n)
-    for i := 0; i < n; i++ {
-        outputs[i] = worker(input)
-    }
-    return outputs
-}
-
-func fanIn(inputs []<-chan int) <-chan int {
-    output := make(chan int)
+// Worker pool
+func workerPool(numWorkers int, jobs <-chan int, results chan<- int) {
     var wg sync.WaitGroup
-    wg.Add(len(inputs))
-    
-    for _, ch := range inputs {
-        go func(c <-chan int) {
+    for i := 0; i < numWorkers; i++ {
+        wg.Add(1)
+        go func(id int) {
             defer wg.Done()
-            for n := range c {
-                output <- n
+            for job := range jobs {
+                results <- job * 2 // Do work
             }
-        }(ch)
+        }(i)
+    }
+    wg.Wait()
+    close(results)
+}
+
+// Fan-out, fan-in
+func fanOutFanIn(input <-chan int) <-chan int {
+    // Fan out to multiple workers
+    workers := 4
+    channels := make([]<-chan int, workers)
+    for i := 0; i < workers; i++ {
+        channels[i] = worker(input)
     }
     
-    go func() {
-        wg.Wait()
-        close(output)
-    }()
-    
-    return output
+    // Fan in from multiple channels
+    return merge(channels...)
 }
 ```
-
-### Pipeline
-```go
-func generator(nums ...int) <-chan int {
-    out := make(chan int)
-    go func() {
-        defer close(out)
-        for _, n := range nums {
-            out <- n
-        }
-    }()
-    return out
-}
-
-func square(in <-chan int) <-chan int {
-    out := make(chan int)
-    go func() {
-        defer close(out)
-        for n := range in {
-            out <- n * n
-        }
-    }()
-    return out
-}
-
-// Usage
-nums := generator(1, 2, 3, 4)
-squares := square(nums)
-for n := range squares {
-    fmt.Println(n)
-}

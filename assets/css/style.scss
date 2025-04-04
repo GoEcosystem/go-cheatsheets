@@ -9,7 +9,7 @@
 /* Base Variables */
 :root {
   /* Colors */
-  --primary-color: #00ADD8;       /* Go blue - bright cyan blue from the image */
+  --primary-color: #00ADD8;       /* Go blue - bright cyan blue */
   --primary-light: #5DC9E2;
   --primary-dark: #0092B8;
   --dark-color: #0D1117;          /* Dark header color */
@@ -44,7 +44,7 @@ body {
   font-family: var(--font-family-sans);
   line-height: 1.6;
   color: var(--gray-800);
-  background-color: var(--light-color);
+  background-color: white;
 }
 
 a {
@@ -64,15 +64,27 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
 }
 
+h1 {
+  font-size: 1.75rem;
+  margin-top: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 0;
+}
+
 h2 {
   font-size: 1.5rem;
   margin-top: 2rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--gray-300);
+  border-bottom: 0;
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
 }
 
 p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 /* Container */
@@ -85,7 +97,7 @@ p {
 /* Header - exactly matching the screenshot */
 .site-header {
   background-color: var(--dark-color);
-  padding: 0.75rem 0;
+  padding: 0.5rem 0;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -93,7 +105,7 @@ p {
 
 .site-header .container {
   display: flex;
-  justify-content: center; /* Center the navigation to match the image */
+  justify-content: center;
   align-items: center;
 }
 
@@ -111,7 +123,7 @@ p {
 .site-nav a {
   color: var(--gray-300);
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
 }
 
 .site-nav a:hover, .site-nav a.active {
@@ -119,39 +131,32 @@ p {
   text-decoration: none;
 }
 
-/* API Header - exactly like Go Web Scraper */
-.api-header {
-  background-color: #00ADD8; /* Exact cyan blue color from the image */
-  color: white;
-  padding: 2.5rem 0;
-  margin-bottom: 2rem;
-  text-align: center; /* Center the text to match the image */
-}
-
-.api-header h1 {
-  color: white;
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 500; /* Match the lighter font weight from the image */
-}
-
-.api-header p {
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0.5rem 0 0;
-  font-size: 1rem;
-}
+/* Blue header banner is removed as it's not in the screenshot */
 
 /* API Content */
 .api-content {
-  margin-bottom: 3rem;
+  margin: 1.5rem 0 3rem 0;
 }
 
-/* Table Styling - exactly like Go Web Scraper */
+.api-content h2 {
+  background-color: white;
+  padding: 0.5rem 0;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.api-content p {
+  margin-bottom: 1rem;
+}
+
+/* Table Styling */
 table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
-  font-size: 0.9rem; /* Match font size from image */
+  font-size: 0.9rem;
 }
 
 th {
@@ -171,14 +176,14 @@ tr:nth-child(even) {
   background-color: var(--gray-100);
 }
 
-/* Code blocks - exactly matching Go Web Scraper API style */
+/* Code blocks - exactly matching screenshot */
 pre {
   background-color: var(--dark-color);
   color: var(--gray-200);
   padding: 1rem;
-  border-radius: 5px;
+  border-radius: 0; /* No border radius in the screenshot */
   overflow-x: auto;
-  margin: 1rem 0;
+  margin: 0 0 1.5rem 0;
   width: 100%;
   font-family: var(--font-family-mono);
   font-size: 0.9rem;

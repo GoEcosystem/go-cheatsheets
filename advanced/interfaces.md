@@ -1,7 +1,8 @@
 ---
-layout: default
-title: Go Interfaces
-permalink: /advanced/interfaces/
+layout: cheatsheet
+title: Interfaces
+description: Interface definitions, type assertions, and empty interfaces
+permalink: /go-cheatsheets/advanced/interfaces/
 ---
 
 # Go Interfaces

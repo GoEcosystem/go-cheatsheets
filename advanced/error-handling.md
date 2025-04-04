@@ -1,241 +1,139 @@
 ---
-layout: default
+layout: cheatsheet
 title: Error Handling
-description: Working with errors and custom error types in Go
-permalink: /advanced/error-handling/
+description: Error handling patterns, custom errors, and error wrapping
+permalink: /go-cheatsheets/advanced/error-handling/
 ---
 
-# Go Error Handling Cheatsheet
-
-Go uses explicit error handling with return values rather than exceptions.
+# Go Error Handling
 
 ## Basic Error Handling
 
+In Go, errors are values returned by functions:
+
 ```go
 // Function that returns an error
-func divide(a, b float64) (float64, error) {
-    if b == 0 {
-        return 0, errors.New("division by zero")
+func doSomething() error {
+    // If an error occurs
+    if problemHappened {
+        return errors.New("something went wrong")
     }
-    return a / b, nil
+    return nil // No error
 }
 
 // Handling errors
-result, err := divide(10, 2)
+err := doSomething()
 if err != nil {
-    // Handle error
-    fmt.Println("Error:", err)
-    return // or handle it appropriately
+    // Handle the error
+    log.Fatalf("Error: %v", err)
 }
-// Use result
-fmt.Println("Result:", result)
 ```
 
-## Creating Errors
+## Custom Error Types
+
+Creating custom error types for more specific error handling:
 
 ```go
-// Using errors.New
-err := errors.New("something went wrong")
-
-// Using fmt.Errorf (with formatting)
-err := fmt.Errorf("invalid value: %v", value)
-
-// Custom error types
-type ValidationError struct {
-    Field string
-    Message string
+// Custom error type
+type NotFoundError struct {
+    Item string
 }
 
-func (e ValidationError) Error() string {
-    return fmt.Sprintf("validation error on field %s: %s", e.Field, e.Message)
+// Implementing the error interface
+func (e NotFoundError) Error() string {
+    return fmt.Sprintf("%s not found", e.Item)
 }
 
-// Creating custom error
-err := ValidationError{Field: "age", Message: "must be positive"}
+// Using custom error
+func findItem(id string) (Item, error) {
+    // If item not found
+    return Item{}, NotFoundError{Item: id}
+}
+
+// Type assertion in error handling
+item, err := findItem("xyz")
+if err != nil {
+    if nfErr, ok := err.(NotFoundError); ok {
+        // Handle not found error specifically
+        fmt.Printf("Could not find: %s\n", nfErr.Item)
+    } else {
+        // Handle other errors
+        fmt.Printf("Error: %v\n", err)
+    }
+}
 ```
 
 ## Error Wrapping (Go 1.13+)
 
+Wrapping errors to add context:
+
 ```go
-// Wrapping an error with additional context
+// Wrapping an error
+func processFile(path string) error {
+    file, err := os.Open(path)
+    if err != nil {
+        return fmt.Errorf("failed to open file: %w", err)
+    }
+    defer file.Close()
+    
+    // More processing...
+    return nil
+}
+
+// Unwrapping errors
+err := processFile("config.json")
 if err != nil {
-    return fmt.Errorf("failed to process file: %w", err)
-}
-
-// Unwrapping an error
-originalErr := errors.Unwrap(err)
-
-// Checking if an error is a specific type
-var validationErr ValidationError
-if errors.As(err, &validationErr) {
-    // It's a ValidationError, use validationErr
-}
-
-// Checking if an error matches a specific error
-if errors.Is(err, os.ErrNotExist) {
-    // File doesn't exist
-}
-```
-
-## Multiple Error Handling Patterns
-
-### Sentinel Errors
-Predefined error values that can be compared with `==` or `errors.Is()`.
-
-```go
-// Defining sentinel errors
-var (
-    ErrNotFound = errors.New("not found")
-    ErrPermission = errors.New("permission denied")
-)
-
-// Using sentinel errors
-if errors.Is(err, ErrNotFound) {
-    // Handle not found case
-}
-```
-
-### Error Types
-Custom error types that implement the `error` interface.
-
-```go
-type QueryError struct {
-    Query string
-    Err error
-}
-
-func (e *QueryError) Error() string {
-    return fmt.Sprintf("query error for %q: %v", e.Query, e.Err)
-}
-
-func (e *QueryError) Unwrap() error {
-    return e.Err
-}
-```
-
-### Behavior-Based Error Handling
-Checking if an error implements a specific interface.
-
-```go
-// Define an interface for errors that can provide a status code
-type StatusCoder interface {
-    StatusCode() int
-}
-
-// Check if error implements the interface
-var sc StatusCoder
-if errors.As(err, &sc) {
-    statusCode := sc.StatusCode()
-    // Use status code
-}
-```
-
-## Panic and Recover
-
-For exceptional situations where the program cannot continue.
-
-```go
-// Causing a panic
-func doSomething() {
-    if somethingTerribleHappened {
-        panic("something terrible happened")
+    // Print full error chain
+    fmt.Println(err)
+    
+    // Get original error
+    if errors.Is(err, os.ErrNotExist) {
+        fmt.Println("File does not exist")
     }
 }
+```
 
-// Recovering from a panic
-func doSafely() (err error) {
+## Multiple Error Checks
+
+Go 1.20+ introduced more elegant ways to handle multiple errors:
+
+```go
+// Check multiple error conditions
+func process() error {
+    if err := step1(); err != nil {
+        return err
+    }
+    if err := step2(); err != nil {
+        return err
+    }
+    if err := step3(); err != nil {
+        return err
+    }
+    return nil
+}
+
+// Alternative approach with defer and named return
+func processWithDefer() (err error) {
     defer func() {
-        if r := recover(); r != nil {
-            // Convert panic to error
-            err = fmt.Errorf("recovered from panic: %v", r)
+        if err != nil {
+            err = fmt.Errorf("process failed: %w", err)
         }
     }()
     
-    doSomething() // might panic
-    return nil
-}
-```
-
-## Defer Statement
-
-Often used with error handling to ensure cleanup.
-
-```go
-func processFile(filename string) error {
-    f, err := os.Open(filename)
-    if err != nil {
-        return err
+    if err = step1(); err != nil {
+        return // early return, defer adds context
     }
-    defer f.Close() // Will be called when function returns
-    
-    // Process file...
-    return nil
-}
-```
-
-## Best Practices
-
-### Handle Errors Once
-```go
-// Good
-if err != nil {
-    return err
-}
-
-// Avoid
-if err != nil {
-    log.Println(err) // Logging and returning is often redundant
-    return err
-}
-```
-
-### Add Context to Errors
-```go
-// Better error messages
-if err != nil {
-    return fmt.Errorf("failed to open config file %s: %w", filename, err)
-}
-```
-
-### Don't Discard Errors
-```go
-// Bad
-_ = someFunc() // Ignoring errors
-
-// Good
-err := someFunc()
-if err != nil {
-    // Handle it
-}
-```
-
-### Use Structured Error Handling
-```go
-switch {
-case errors.Is(err, ErrNotFound):
-    // Handle not found
-case errors.Is(err, ErrPermission):
-    // Handle permission error
-default:
-    // Handle other errors
-}
-```
-
-### Avoid Nested Error Handling
-```go
-// Avoid
-if err := step1(); err != nil {
-    if err := cleanup(); err != nil {
-        log.Println("cleanup failed:", err)
+    if err = step2(); err != nil {
+        return
     }
-    return err
+    return step3()
 }
+```
 
-// Better
-if err := step1(); err != nil {
-    err2 := cleanup()
-    if err2 != nil {
-        log.Println("cleanup failed:", err2)
-    }
-    return err
-}
+## Error Handling Best Practices
+
+1. Return errors rather than panicking
+2. Check errors explicitly
+3. Add context to errors when returning up the call stack
+4. Only handle errors once
+5. Use package `errors` for creating, wrapping, and inspecting errors
