@@ -172,7 +172,7 @@ th {
 
 /* Header */
 .site-header {
-  background-color: var(--dark-color);
+  background-color: var(--primary-color);
   padding: 0.5rem 0;
   position: sticky;
   top: 0;
@@ -199,6 +199,14 @@ th {
   width: 24px;
   height: 24px;
   background-color: white;
+  margin-right: 8px;
+}
+
+.logo-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
   margin-right: 8px;
 }
 
