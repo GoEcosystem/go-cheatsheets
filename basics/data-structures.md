@@ -259,3 +259,4 @@ default:
     fmt.Println("i is another type")
 }
 {% endraw %}
+```

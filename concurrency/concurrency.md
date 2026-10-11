@@ -209,3 +209,4 @@ func fanOutFanIn(input <-chan int) <-chan int {
     // Fan in from multiple channels
     return merge(channels...)
 }
+```
